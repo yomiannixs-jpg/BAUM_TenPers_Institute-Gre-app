@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>BAUM TenPers BAUM TenPers GRE 330+ v2.2 Secure</title>
+<title>BAUM TenPers BAUM TenPers GRE 330+ v2.3 Adaptive</title>
 <style>
 :root{--bg:#f3f5f7;--card:#fff;--text:#111827;--muted:#64748b;--line:#d8dee8;--accent:#111827;--good:#0f766e;--bad:#b91c1c;--warn:#b45309}
 *{box-sizing:border-box} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
@@ -221,6 +221,19 @@ body.exam-active .watermark-layer{display:block}
 @media(max-width:850px){.test-select-grid{grid-template-columns:1fr}}
 </style>
 
+
+<style id="baum-adaptive-v23-css">
+.adaptive-status{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.adaptive-status>div{background:#fff;border:1px solid #e0d4ef;border-radius:12px;padding:10px}
+.adaptive-status strong{display:block;font-size:11px;color:#6a6480;text-transform:uppercase;letter-spacing:.04em}
+.adaptive-status span{display:block;margin-top:4px;font-weight:850;color:#230078}
+.adaptive-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;background:#fff0c2;color:#230078;font-size:11px;font-weight:900}
+.adaptive-result{background:linear-gradient(135deg,#230078,#5a35a5);color:#fff;border-radius:16px;padding:16px;margin:14px 0}
+.adaptive-result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.adaptive-result-grid div{background:rgba(255,255,255,.11);padding:10px;border-radius:10px}
+@media(max-width:750px){.adaptive-status,.adaptive-result-grid{grid-template-columns:1fr 1fr}}
+</style>
+
 </head>
 <body>
 
@@ -246,7 +259,7 @@ body.exam-active .watermark-layer{display:block}
   <div class="auth-card">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
       <div>
-        <div class="mvp-pill">BAUM TenPers GRE 330+ v2.2 Secure</div>
+        <div class="mvp-pill">BAUM TenPers GRE 330+ v2.3 Adaptive</div>
         <h2 style="margin:10px 0 4px">Student Account</h2>
         <p class="muted" style="margin:0">Create an account or sign in to continue.</p>
       </div>
@@ -293,7 +306,7 @@ body.exam-active .watermark-layer{display:block}
 <div class="mvp-shell" id="mvpDashboard">
   <div class="mvp-hero">
     <div>
-      <span class="mvp-pill" style="background:#334155;color:white">BAUM TenPers BAUM TenPers GRE 330+ v2.2 Secure</span>
+      <span class="mvp-pill" style="background:#334155;color:white">BAUM TenPers BAUM TenPers GRE 330+ v2.3 Adaptive</span>
       <h1 id="mvpGreeting">Your focused 330 study system</h1>
       <p style="color:#cbd5e1;max-width:760px">Practice. Time. Review. Improve. The MVP keeps only the features that matter most for a strong GRE score: targeted drills, timed CBT sections, full simulation, detailed review, and progress tracking.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
@@ -390,7 +403,7 @@ body.exam-active .watermark-layer{display:block}
 <div class="top">
   <div class="brand baum-brand">
       <div class="baum-logo-shell"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/BT_logo.png" alt="BAUM TenPers Institute logo" onerror="this.style.display='none';this.parentElement.textContent='BAUM'"></div>
-      <div class="baum-wordmark"><strong>BAUM TenPers GRE 330+ v2.2 Secure</strong><small>Graduate Test Preparation</small></div>
+      <div class="baum-wordmark"><strong>BAUM TenPers GRE 330+ v2.3 Adaptive</strong><small>Graduate Test Preparation</small></div>
     </div>
   <div id="topStatus" class="muted" style="color:#cbd5e1">Standalone Offline App</div>
 <div class="user-chip"><span id="currentStudentName">Student</span><button onclick="logoutBaum()" style="border:0;background:transparent;color:#ffc533;font-weight:800;cursor:pointer">Logout</button></div>
@@ -400,7 +413,7 @@ body.exam-active .watermark-layer{display:block}
 <div class="wrap">
 <section id="home">
   <div class="card">
-    <h1>BAUM TenPers GRE 330+ v2.2 Secure Computer-Based Practice</h1>
+    <h1>BAUM TenPers GRE 330+ v2.3 Adaptive Computer-Based Practice</h1>
     <p class="muted">2,000-question offline bank: 1,000 Quant + 1,000 Verbal. Timed sections, full simulation, practice mode, flags, question palette, scoring, review, and local progress.</p>
   </div>
   
@@ -420,6 +433,7 @@ body.exam-active .watermark-layer{display:block}
         <option value="practice">Practice set</option>
         <option value="section">Timed section</option>
         <option value="full" selected>Full simulation</option>
+        <option value="adaptive">Adaptive GRE</option>
       </select>
     </label>
     <label>Question count
@@ -432,7 +446,13 @@ body.exam-active .watermark-layer{display:block}
     </label>
   </div>
   <p id="mainTestNote" class="test-mode-note">Quant + Verbal full simulation: 27 Quant + 27 Verbal questions.</p>
-  <button class="btn" style="margin-top:12px" onclick="startSelectedTest()">Start Selected Test</button>
+  
+<button class="btn" style="margin-top:12px" onclick="startSelectedTest()">Start Selected Test</button>
+<div id="adaptiveStatus" class="adaptive-status">
+  <div><strong>Adaptive engine</strong><span id="adaptiveLevel">Starting level: Medium</span></div>
+  <div><strong>Live ability</strong><span id="adaptiveTheta">0.00 θ</span></div>
+  <div><strong>Projected score</strong><span id="adaptiveProjected">Quant — · Verbal —</span></div>
+</div>
 </div>
 
 <div class="grid g3" style="margin-top:16px">
@@ -857,7 +877,7 @@ async function shareFriendLink(){
   setFriendLink();
   const url=document.getElementById('friendShareLink').value;
   if(navigator.share && location.protocol!=='file:'){
-    await navigator.share({title:'BAUM TenPers GRE 330+ v2.2 Secure',text:'Try the BAUM TenPers GRE 330+ v2.2 Secure preparation app.',url});
+    await navigator.share({title:'BAUM TenPers GRE 330+ v2.3 Adaptive',text:'Try the BAUM TenPers GRE 330+ v2.3 Adaptive preparation app.',url});
   }else{
     copyFriendLink();
   }
@@ -966,7 +986,14 @@ function updateMainTestOptions(){
   const note=document.getElementById('mainTestNote');
   if(!count||!note)return;
 
-  if(format==='full'){
+  if(format==='adaptive'){
+    count.value= type==='Mixed' ? '54' : '27';
+    count.disabled=true;
+    note.textContent= type==='Mixed'
+      ? 'Adaptive diagnostic: Quant + Verbal, routed from Medium toward easier or harder material as ability is estimated.'
+      : `Adaptive ${type} diagnostic: starts at Medium and estimates ability as you answer.`;
+  }else if(format==='full'){
+    count.disabled=false;
     if(type==='Mixed'){
       count.value='54';
       note.textContent='Quant + Verbal full simulation: 27 Quant + 27 Verbal questions.';
@@ -975,11 +1002,13 @@ function updateMainTestOptions(){
       note.textContent=`${type} full simulation: 27 questions.`;
     }
   }else if(format==='section'){
+    count.disabled=false;
     count.value= type==='Mixed' ? '20' : '20';
     note.textContent= type==='Mixed'
       ? 'Mixed timed section: Quant and Verbal questions in one timed set.'
       : `${type} timed section.`;
   }else{
+    count.disabled=false;
     note.textContent= type==='Mixed'
       ? 'Mixed practice set using both Quant and Verbal.'
       : `${type} practice set.`;
@@ -1029,6 +1058,139 @@ function startSelectedTest(){
   }
 }
 window.addEventListener('load',updateMainTestOptions);
+</script>
+
+
+<script id="baum-adaptive-v23-js">
+const BT_ADAPTIVE={
+  active:false, type:'Mixed', theta:{Quant:0,Verbal:0}, answered:{Quant:0,Verbal:0},
+  correct:{Quant:0,Verbal:0}, history:[], targetDifficulty:{Quant:'Medium',Verbal:'Medium'}
+};
+const BT_DIFF_B={Easy:-1.15,Medium:-0.25,Hard:0.65,'Very Hard':1.35};
+
+function btClamp(x,a,b){return Math.max(a,Math.min(b,x))}
+function btScoreFromTheta(theta){
+  // GRE-like 130–170 projection; diagnostic estimate, not an ETS score.
+  return Math.round(btClamp(150 + 11.5*theta,130,170));
+}
+function btLevel(theta){
+  if(theta < -.65) return 'Easy';
+  if(theta < .35) return 'Medium';
+  if(theta < 1.10) return 'Hard';
+  return 'Very Hard';
+}
+function btUpdateTheta(section,isCorrect,difficulty){
+  const b=BT_DIFF_B[difficulty] ?? 0;
+  const theta=BT_ADAPTIVE.theta[section]||0;
+  const p=1/(1+Math.exp(-(theta-b)));
+  // online IRT-style update, damped to prevent single-item jumps
+  const step=.48/Math.sqrt(1+BT_ADAPTIVE.answered[section]*.10);
+  BT_ADAPTIVE.theta[section]=btClamp(theta+step*((isCorrect?1:0)-p),-1.75,1.75);
+  BT_ADAPTIVE.answered[section]++;
+  if(isCorrect) BT_ADAPTIVE.correct[section]++;
+  BT_ADAPTIVE.targetDifficulty[section]=btLevel(BT_ADAPTIVE.theta[section]);
+  BT_ADAPTIVE.history.push({section,isCorrect,difficulty,theta:BT_ADAPTIVE.theta[section],time:Date.now()});
+  btRenderAdaptive();
+}
+function btRenderAdaptive(){
+  const q=BT_ADAPTIVE.theta.Quant,v=BT_ADAPTIVE.theta.Verbal;
+  const level=document.getElementById('adaptiveLevel');
+  const theta=document.getElementById('adaptiveTheta');
+  const proj=document.getElementById('adaptiveProjected');
+  if(level) level.textContent=BT_ADAPTIVE.active
+    ? `Q: ${BT_ADAPTIVE.targetDifficulty.Quant} · V: ${BT_ADAPTIVE.targetDifficulty.Verbal}`
+    : 'Starting level: Medium';
+  if(theta) theta.textContent=`Q ${q.toFixed(2)} · V ${v.toFixed(2)} θ`;
+  if(proj) proj.textContent=`Quant ${btScoreFromTheta(q)} · Verbal ${btScoreFromTheta(v)} · Total ${btScoreFromTheta(q)+btScoreFromTheta(v)}`;
+}
+function btAdaptivePick(section,n){
+  const pool=(BANK?.[section.toLowerCase()]||[]);
+  const selected=[],used=new Set();
+  let theta=BT_ADAPTIVE.theta[section]||0;
+  for(let i=0;i<n;i++){
+    const target=btLevel(theta);
+    let candidates=pool.filter(x=>x.difficulty===target&&!used.has(x.id));
+    if(!candidates.length)candidates=pool.filter(x=>!used.has(x.id));
+    if(!candidates.length)break;
+    // random among a small candidate window to avoid deterministic exposure
+    const window=candidates.slice().sort(()=>Math.random()-.5).slice(0,Math.min(30,candidates.length));
+    const q=window[Math.floor(Math.random()*window.length)];
+    used.add(q.id); selected.push(q);
+    // Selection is initially routed by current estimate; live updates occur as answers are graded.
+  }
+  return selected;
+}
+function startAdaptiveTest(type){
+  if(!BANK){alert('Question bank is still loading.');return}
+  BT_ADAPTIVE.active=true; BT_ADAPTIVE.type=type;
+  BT_ADAPTIVE.theta={Quant:0,Verbal:0};BT_ADAPTIVE.answered={Quant:0,Verbal:0};
+  BT_ADAPTIVE.correct={Quant:0,Verbal:0};BT_ADAPTIVE.history=[];
+  let items=[],mins=0,title='';
+  if(type==='Quant'){items=btAdaptivePick('Quant',27);mins=47;title='Adaptive Quant Diagnostic'}
+  else if(type==='Verbal'){items=btAdaptivePick('Verbal',27);mins=41;title='Adaptive Verbal Diagnostic'}
+  else{
+    items=[...btAdaptivePick('Verbal',27),...btAdaptivePick('Quant',27)];
+    mins=88;title='Adaptive Quant + Verbal Diagnostic';
+  }
+  btRenderAdaptive();
+  begin(items,mins,title);
+}
+const __btV23OriginalStartSelected=window.startSelectedTest;
+window.startSelectedTest=function(){
+  const format=document.getElementById('mainTestFormat')?.value||'full';
+  const type=document.getElementById('mainTestType')?.value||'Mixed';
+  if(format==='adaptive'){startAdaptiveTest(type);return}
+  BT_ADAPTIVE.active=false;
+  return __btV23OriginalStartSelected();
+};
+
+// Hook grading by observing answer state changes when possible.
+function btQuestionSection(q){return q?.section==='Verbal'?'Verbal':'Quant'}
+function btInferCorrect(q,chosen){
+  if(!q)return null;
+  if(Array.isArray(q.answer)){
+    const arr=Array.isArray(chosen)?chosen:[chosen];
+    return q.answer.length===arr.length && q.answer.every(x=>arr.includes(x));
+  }
+  return chosen===q.answer;
+}
+// Patch nextQ: grade current item from app state before advancing.
+// This is deliberately defensive against the app's existing variable names.
+const __btOldNextQ = typeof nextQ==='function' ? nextQ : null;
+if(__btOldNextQ){
+  nextQ=function(){
+    if(BT_ADAPTIVE.active){
+      try{
+        const q=(typeof test!=='undefined' && test.items)?test.items[test.idx]:
+                (typeof state!=='undefined' && state.items)?state.items[state.idx]:null;
+        let chosen=(typeof test!=='undefined')?test.answers?.[test.idx]:
+                   (typeof state!=='undefined')?state.answers?.[state.idx]:undefined;
+        if(q && chosen!==undefined && !q.__btAdaptiveGraded){
+          const ok=btInferCorrect(q,chosen);
+          if(ok!==null){q.__btAdaptiveGraded=true;btUpdateTheta(btQuestionSection(q),ok,q.difficulty)}
+        }
+      }catch(e){}
+    }
+    return __btOldNextQ.apply(this,arguments);
+  }
+}
+function btAdaptiveSummary(){
+  if(!BT_ADAPTIVE.active)return '';
+  const q=btScoreFromTheta(BT_ADAPTIVE.theta.Quant),v=btScoreFromTheta(BT_ADAPTIVE.theta.Verbal);
+  return `<div class="adaptive-result">
+    <span class="adaptive-badge">V2.3 ADAPTIVE DIAGNOSTIC</span>
+    <h3 style="margin:9px 0 0">Projected GRE range</h3>
+    <div class="adaptive-result-grid">
+      <div><small>Quant</small><strong>${q}</strong></div>
+      <div><small>Verbal</small><strong>${v}</strong></div>
+      <div><small>Total</small><strong>${q+v}</strong></div>
+      <div><small>Ability</small><strong>Q ${BT_ADAPTIVE.theta.Quant.toFixed(2)} / V ${BT_ADAPTIVE.theta.Verbal.toFixed(2)}</strong></div>
+    </div>
+    <p style="margin:10px 0 0;font-size:12px;color:#e9e0ff">Diagnostic estimate from this app's item-response model; it is not an official ETS GRE score.</p>
+  </div>`;
+}
+window.btAdaptiveSummary=btAdaptiveSummary;
+window.addEventListener('load',btRenderAdaptive);
 </script>
 
 </body>

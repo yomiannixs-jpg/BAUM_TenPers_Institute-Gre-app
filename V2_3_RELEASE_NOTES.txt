@@ -1,0 +1,17 @@
+BAUM TenPers GRE 330+ v2.3 Adaptive
+
+Added:
+- Adaptive GRE option in the test selector
+- Quant-only adaptive diagnostic
+- Verbal-only adaptive diagnostic
+- Combined Quant + Verbal adaptive diagnostic
+- Four routed difficulty bands: Easy, Medium, Hard, Very Hard
+- Online IRT-style ability estimate (theta)
+- Separate Quant and Verbal ability estimates
+- 130–170 diagnostic score projection for each section
+- 260–340 combined projection
+- Live adaptive status panel
+- Existing 5,000-question bank, encryption, anti-copy controls and PWA installation retained
+
+Scoring note:
+Projected scores are BAUM diagnostic estimates, not official ETS GRE scores. A production-grade calibrated score engine should later estimate item parameters from real student response data.
