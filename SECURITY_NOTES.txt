@@ -1,0 +1,16 @@
+BAUM TenPers GRE 330+ v2.1 Secure
+
+Implemented:
+- AES-GCM encrypted question bank at rest inside the deployed package
+- Question bank decrypted only in browser memory
+- Text selection disabled during exams
+- Copy, cut, drag, right-click, print and common save/source shortcuts blocked during exams
+- Test content automatically hidden when browser/app loses focus
+- Dynamic student-name/email/date watermarks across active test screens
+- Print stylesheet replaces exam content with a protection notice
+- PWA/browser installation retained
+
+Important limitation:
+No normal web, desktop, or mobile app can guarantee prevention of operating-system screenshots or external-camera photographs. OS-level screen capture sits outside normal browser JavaScript controls. Watermarking and focus protection deter and trace casual capture.
+
+For materially stronger protection, move the question bank to a server API and deliver only one signed question at a time after authenticated login. Do not ship the entire bank to the client.
