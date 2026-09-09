@@ -1,1 +1,14 @@
-Clean Student Dashboard build. Cryptographic bank verified successfully: 2,500 Quant + 2,500 Verbal questions.
+BAUM TenPers GRE — Sidebar Clean UI Build
+
+Changes:
+- Removed institute promo/about block from main UI.
+- Removed Google Chrome install/share-with-friend block from main UI.
+- Removed floating install/download package bar.
+- Removed related creator/footer clutter from main UI.
+- Added open/close left sidebar.
+- Moved Student Dashboard into sidebar.
+- Moved Institutional Platform into sidebar.
+- Moved Question Delivery Security into sidebar.
+- Moved Cloud Account Foundation into sidebar.
+- Performance analytics remain accessible through Student Dashboard.
+- Existing testing, encrypted 5,000-question bank, adaptive testing, analytics, study plans, simulation, question quality, and PWA support preserved.

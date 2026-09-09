@@ -367,8 +367,106 @@ body.gre-simulation-active .sim-banner{display:flex;justify-content:space-betwee
 @media(max-width:560px){.student-dashboard-grid,.student-dashboard-two{grid-template-columns:1fr}}
 </style>
 
+
+<style id="baum-sidebar-clean-css">
+.sidebar-toggle{
+  position:fixed;left:16px;top:86px;z-index:17020;
+  width:48px;height:48px;border:0;border-radius:14px;
+  background:#230078;color:#fff;font-size:24px;font-weight:900;
+  box-shadow:0 10px 28px rgba(35,0,120,.28);cursor:pointer;
+}
+.sidebar-backdrop{
+  position:fixed;inset:0;background:rgba(17,10,37,.50);
+  z-index:17000;display:none;
+}
+.sidebar-backdrop.active{display:block}
+.baum-sidebar{
+  position:fixed;left:0;top:0;bottom:0;width:min(390px,92vw);
+  z-index:17010;background:#f8f6fb;color:#211737;
+  transform:translateX(-105%);transition:transform .24s ease;
+  box-shadow:18px 0 44px rgba(18,10,39,.22);
+  overflow-y:auto;padding:18px;
+}
+.baum-sidebar.open{transform:translateX(0)}
+.baum-sidebar-head{
+  display:flex;justify-content:space-between;gap:12px;align-items:center;
+  border-bottom:1px solid #e4dbed;padding-bottom:13px;margin-bottom:14px
+}
+.baum-sidebar-head h2{margin:0;color:#230078;font-size:21px}
+.baum-sidebar-close{
+  width:38px;height:38px;border:0;border-radius:10px;
+  background:#eee8f5;color:#230078;font-size:22px;font-weight:900;cursor:pointer
+}
+.sidebar-menu-card{
+  border:1px solid #e3daec;background:white;border-radius:15px;
+  margin:10px 0;overflow:hidden
+}
+.sidebar-menu-button{
+  width:100%;border:0;background:white;text-align:left;padding:14px;
+  color:#230078;font-weight:900;cursor:pointer;
+  display:flex;justify-content:space-between;gap:8px;align-items:center
+}
+.sidebar-menu-button:hover{background:#f7f2ff}
+.sidebar-section-content{
+  display:none;border-top:1px solid #eee7f5;padding:12px;background:#fcfbfe
+}
+.sidebar-section-content.open{display:block}
+.sidebar-section-content > *{margin-top:0!important}
+.sidebar-section-content .student-dash-launch,
+.sidebar-section-content .institution-panel,
+.sidebar-section-content .bank-security-card,
+.sidebar-section-content .cloud-card{
+  margin:0!important;border-radius:12px!important
+}
+.sidebar-note{font-size:12px;color:#706680;line-height:1.45;margin:6px 0 14px}
+@media(max-width:700px){
+  .sidebar-toggle{left:10px;top:76px;width:44px;height:44px}
+}
+</style>
+
 </head>
 <body>
+
+<button id="sidebarToggle" class="sidebar-toggle" onclick="openBaumSidebar()" aria-label="Open menu">☰</button>
+<div id="sidebarBackdrop" class="sidebar-backdrop" onclick="closeBaumSidebar()"></div>
+<aside id="baumSidebar" class="baum-sidebar" aria-label="BAUM GRE sidebar">
+  <div class="baum-sidebar-head">
+    <div>
+      <h2>BAUM GRE Menu</h2>
+      <div class="sidebar-note">Student tools and platform controls</div>
+    </div>
+    <button class="baum-sidebar-close" onclick="closeBaumSidebar()" aria-label="Close menu">×</button>
+  </div>
+
+  <div class="sidebar-menu-card">
+    <button class="sidebar-menu-button" onclick="toggleSidebarSection('sbStudent')">
+      <span>Student Dashboard</span><span>›</span>
+    </button>
+    <div id="sbStudent" class="sidebar-section-content"></div>
+  </div>
+
+  <div class="sidebar-menu-card">
+    <button class="sidebar-menu-button" onclick="toggleSidebarSection('sbInstitution')">
+      <span>Institutional Platform</span><span>›</span>
+    </button>
+    <div id="sbInstitution" class="sidebar-section-content"></div>
+  </div>
+
+  <div class="sidebar-menu-card">
+    <button class="sidebar-menu-button" onclick="toggleSidebarSection('sbSecurity')">
+      <span>Question Delivery Security</span><span>›</span>
+    </button>
+    <div id="sbSecurity" class="sidebar-section-content"></div>
+  </div>
+
+  <div class="sidebar-menu-card">
+    <button class="sidebar-menu-button" onclick="toggleSidebarSection('sbCloud')">
+      <span>Cloud Account Foundation</span><span>›</span>
+    </button>
+    <div id="sbCloud" class="sidebar-section-content"></div>
+  </div>
+</aside>
+
 
 <div id="studentDashboardOverlay" class="student-dashboard-overlay">
  <div class="student-dashboard-shell">
@@ -704,26 +802,7 @@ body.gre-simulation-active .sim-banner{display:flex;justify-content:space-betwee
     </div>
   </div>
   
-<div class="baum-about">
-  <div class="mvp-pill">BAUM TenPers Institute</div>
-  <h3 style="margin:10px 0 6px">GRE preparation built for ambitious graduate applicants</h3>
-  <p class="muted" style="margin:0">
-    Timed Quant and Verbal CBT practice, diagnostics, targeted drills, detailed review,
-    weak-area tracking and progress monitoring.
-  </p>
-  <p style="margin:10px 0 0;font-size:13px"><b>Created by YomiAnnixs for BAUM TenPers Institute</b> ·
-  <a href="https://www.baumtenpers.com" target="_blank" rel="noopener" style="color:#230078;font-weight:800">www.baumtenpers.com</a></p>
-</div>
 
-
-<div class="chrome-install-card">
-  <div style="display:flex;gap:14px;align-items:center">
-    <div class="chrome-icon"></div>
-    <div>
-      <h3 style="margin:0 0 4px">Install directly with Google Chrome</h3>
-      <p class="muted" style="margin:0">This is separate from the original app-package download. On Chrome/Chromium browsers it opens the native PWA install prompt when available.</p>
-    </div>
-  </div>
   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
     <button class="btn good" onclick="installWithChrome()">Install with Google Chrome</button>
     <button class="btn alt" onclick="showChromeHelp()">Chrome install help</button>
@@ -740,7 +819,7 @@ body.gre-simulation-active .sim-banner{display:flex;justify-content:space-betwee
   <p class="auth-note">Alternative friend page: <b>/share.html</b> on the same hosted domain.</p>
 </div>
 
-<div class="mvp-footer">Created by YomiAnnixs for BAUM TenPers Institute · <a href="https://www.baumtenpers.com" target="_blank" style="color:#230078;font-weight:800">www.baumtenpers.com</a></div>
+
 </div>
 
 <div class="top">
@@ -1086,10 +1165,7 @@ window.addEventListener('load',()=>renderMvpDashboard());
 </script>
 
 
-<div class="baum-install-bar" id="baumInstallBar">
-  <button class="baum-install-primary" id="installPwaBtn" onclick="installBaumApp()">Install App</button>
-  <a class="baum-install-secondary" href="downloads/BAUM_TenPers_GRE_Desktop_Mobile_App.zip" download>Download Desktop/Mobile Package</a>
-</div>
+
 
 
 <script id="baum-pwa-install">
@@ -1118,7 +1194,7 @@ if('serviceWorker' in navigator && location.protocol.startsWith('http')){
 }
 </script>
 
-<div class="baum-credit">BAUM TenPers Institute branding · App created by YomiAnnixs · Official institute logo displayed from Wikimedia Commons under CC BY-SA 4.0.</div>
+
 
 <script id="baum-auth-chrome-share">
 let authMode='login';
@@ -2062,6 +2138,46 @@ function renderStudentDashboard(){
 }
 function openStudentDashboard(){renderStudentDashboard();document.getElementById('studentDashboardOverlay')?.classList.add('active')}
 function closeStudentDashboard(){document.getElementById('studentDashboardOverlay')?.classList.remove('active')}
+</script>
+
+
+<script id="baum-sidebar-clean-js">
+function openBaumSidebar(){
+  document.getElementById('baumSidebar')?.classList.add('open');
+  document.getElementById('sidebarBackdrop')?.classList.add('active');
+}
+function closeBaumSidebar(){
+  document.getElementById('baumSidebar')?.classList.remove('open');
+  document.getElementById('sidebarBackdrop')?.classList.remove('active');
+}
+function toggleSidebarSection(id){
+  const target=document.getElementById(id);
+  if(!target)return;
+  const opening=!target.classList.contains('open');
+  document.querySelectorAll('.sidebar-section-content').forEach(x=>x.classList.remove('open'));
+  if(opening) target.classList.add('open');
+}
+function moveFeatureIntoSidebar(sourceSelector,targetId){
+  const source=document.querySelector(sourceSelector);
+  const target=document.getElementById(targetId);
+  if(source && target){
+    target.appendChild(source);
+    source.style.display='';
+  }
+}
+window.addEventListener('load',()=>{
+  // Move these four features completely off the main page into the sidebar.
+  moveFeatureIntoSidebar('.student-dash-launch','sbStudent');
+  moveFeatureIntoSidebar('#institutionPlatform','sbInstitution');
+  moveFeatureIntoSidebar('#serverBankPanel','sbSecurity');
+  moveFeatureIntoSidebar('#cloudAccountPanel','sbCloud');
+
+  // Student dashboard opener remains functional from within sidebar.
+  // Main performance analytics itself remains in the Student Dashboard overlay.
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape') closeBaumSidebar();
+});
 </script>
 
 </body>
