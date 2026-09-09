@@ -1,0 +1,4 @@
+
+Student login is local-device MVP authentication. For real cross-device accounts, connect a cloud auth provider.
+After hosting, share https://YOUR-DOMAIN/share.html with friends.
+Google Chrome installation uses the native PWA install prompt when supported.

@@ -1,0 +1,10 @@
+{
+  "name": "BAUM TenPers GRE 330+",
+  "short_name": "BAUM GRE",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f7f4fb",
+  "theme_color": "#230078",
+  "description": "BAUM TenPers Institute GRE Quant and Verbal timed CBT preparation app, created by YomiAnnixs.",
+  "orientation": "any"
+}
