@@ -1,0 +1,9 @@
+BAUM TenPers GRE 330+ — Clean Student Dashboard Build
+
+Changes:
+- Removed visible version numbers from application UI/UX.
+- Added dedicated Student Dashboard.
+- Moved performance analytics off the main application page into Student Dashboard.
+- Student Dashboard contains Quant/Verbal accuracy, estimated scores, weakest skills, difficulty performance, recent score trend, recommended focus and 330+ diagnostic.
+- Removed screenshot/screenshot-preview UI sections where present.
+- Preserved testing, adaptive engine, study plan, institutional features, question security, quality intelligence, server-bank foundation and PWA support.

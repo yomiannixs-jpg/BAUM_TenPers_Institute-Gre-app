@@ -1,6 +1,6 @@
 {
-  "name": "BAUM TenPers GRE 330+ v3.0 Institutional",
-  "short_name": "BAUM GRE v3.0",
+  "name": "BAUM TenPers GRE 330+",
+  "short_name": "BAUM GRE",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f7f4fb",
