@@ -889,7 +889,7 @@ async function loadEncryptedBank(){
   for(let i=0;i<32;i++) k[i]=a[i]^b[i];
   const cryptoKey=await crypto.subtle.importKey("raw",k,{name:"AES-GCM"},false,["decrypt"]);
   const plain=await crypto.subtle.decrypt(
-    {name:"AES-GCM",iv:__btB64Bytes(__BT_BANK_NONCE__),additionalData:new TextEncoder().encode("BAUM-GRE-")},
+    {name:"AES-GCM",iv:__btB64Bytes(__BT_BANK_NONCE__),additionalData:new TextEncoder().encode("BAUM-GRE-v2.1")},
     cryptoKey,
     __btB64Bytes(__BT_BANK_CIPHER__)
   );
@@ -1314,7 +1314,7 @@ window.addEventListener('load',async()=>{
   }catch(err){
     console.error('Secure bank load failed',err);
     const g=document.getElementById('secureBankGate');
-    if(g) g.innerHTML='<div class="secure-bank-card"><h2>Secure question bank could not be unlocked.</h2><p>Refresh the app or redeploy the current build.</p></div>';
+    if(g) g.innerHTML='<div class="secure-bank-card"><h2>Secure question bank could not be unlocked.</h2><p>The local secure cache may be stale. Clear it and retry.</p><button class="btn" onclick="location.reload(true)">Retry</button></div>';
   }
   renderWatermarks();
 });
@@ -2062,6 +2062,20 @@ function renderStudentDashboard(){
 }
 function openStudentDashboard(){renderStudentDashboard();document.getElementById('studentDashboardOverlay')?.classList.add('active')}
 function closeStudentDashboard(){document.getElementById('studentDashboardOverlay')?.classList.remove('active')}
+</script>
+
+
+<script id="baum-secure-cache-recovery">
+window.addEventListener('load', async () => {
+  try {
+    if ('serviceWorker' in navigator) {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      for (const reg of regs) {
+        try { await reg.update(); } catch(e) {}
+      }
+    }
+  } catch(e) {}
+});
 </script>
 
 </body>

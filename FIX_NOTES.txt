@@ -1,0 +1,8 @@
+BAUM TenPers GRE — Secure Bank Unlock Fix
+
+Fixed:
+- Restored the AES-GCM additional authenticated data string required to decrypt the existing encrypted 5,000-question bank.
+- The prior clean-UI version-removal pass accidentally altered this internal cryptographic version marker.
+- Bumped the service-worker cache key to avoid Chrome loading the broken cached build.
+- Added service-worker update recovery on app startup.
+- Preserved the clean UI, Student Dashboard, analytics relocation, question-bank security, adaptive testing, study plans, institutional tools, and PWA support.

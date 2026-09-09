@@ -1,4 +1,4 @@
-const CACHE='baum-gre-production-clean-dashboard';
+const CACHE='baum-gre-secure-unlock-fixed';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./share.html'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
 self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));
