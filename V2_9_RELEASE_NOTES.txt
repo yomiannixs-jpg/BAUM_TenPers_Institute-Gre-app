@@ -1,0 +1,24 @@
+BAUM TenPers GRE 330+ v2.9 — Full GRE Simulation
+
+Added:
+- Dedicated Full GRE Simulation mode
+- Separate Verbal and Quant section sequencing
+- 27 Verbal + 27 Quant question configuration
+- 41-minute Verbal and 47-minute Quant timing
+- Scheduled 10-minute break screen
+- Section locking/progression foundation
+- Review-flag tracking
+- Unanswered-question detection
+- Simulation progress header
+- Accidental page-exit warning during simulation
+
+Retained:
+- 5,000-question bank
+- adaptive testing
+- analytics and weakness diagnostics
+- personalized 330+ study plans
+- cloud-account foundation
+- server-side question-bank architecture
+- question-quality intelligence
+- encryption and anti-copy protections
+- PWA/browser installation

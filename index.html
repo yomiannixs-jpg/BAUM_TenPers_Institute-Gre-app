@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>BAUM TenPers BAUM TenPers GRE 330+ v2.8 Quality Intelligence</title>
+<title>BAUM TenPers BAUM TenPers GRE 330+ v2.9 Full Simulation</title>
 <style>
 :root{--bg:#f3f5f7;--card:#fff;--text:#111827;--muted:#64748b;--line:#d8dee8;--accent:#111827;--good:#0f766e;--bad:#b91c1c;--warn:#b45309}
 *{box-sizing:border-box} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
@@ -316,8 +316,40 @@ body.exam-active .watermark-layer{display:block}
 @media(max-width:700px){.quality-grid{grid-template-columns:1fr 1fr}.quality-item{grid-template-columns:1fr 1fr}}
 </style>
 
+
+<style id="baum-v29-simulation-css">
+.sim-panel{background:linear-gradient(135deg,#f8f3ff,#fff9e8);border:1px solid #ddd1ed;border-radius:18px;padding:16px;margin-top:14px}
+.sim-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.sim-kpi{background:#fff;border:1px solid #e7def0;border-radius:13px;padding:12px}
+.sim-kpi small{display:block;color:#706680;font-weight:800}.sim-kpi strong{display:block;color:#230078;font-size:21px;margin-top:4px}
+.sim-banner{display:none;position:sticky;top:0;z-index:95;background:#160d38;color:#fff;padding:9px 12px;border-bottom:2px solid #ffc533}
+body.gre-simulation-active .sim-banner{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.sim-progress{height:6px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;min-width:130px}
+.sim-progress>div{height:100%;background:#ffc533;width:0}
+.sim-break{position:fixed;inset:0;z-index:14000;background:#160d38;color:white;display:none;align-items:center;justify-content:center;text-align:center;padding:24px}
+.sim-break.active{display:flex}.sim-break-card{max-width:520px}.sim-break-time{font-size:42px;font-weight:900;color:#ffc533}
+@media(max-width:700px){.sim-grid{grid-template-columns:1fr 1fr}}
+</style>
+
 </head>
 <body>
+
+<div id="greSimBanner" class="sim-banner">
+  <div><b>BAUM FULL GRE SIMULATION</b> · <span id="simSectionLabel">Section</span></div>
+  <div class="sim-progress"><div id="simProgressBar"></div></div>
+  <div id="simClockLabel">--:--</div>
+</div>
+
+<div id="simBreakScreen" class="sim-break">
+  <div class="sim-break-card">
+    <div class="mvp-pill" style="background:#ffc533;color:#160d38">SCHEDULED BREAK</div>
+    <h2>Full GRE Simulation</h2>
+    <p>Your completed section is locked. Continue when you are ready.</p>
+    <div id="simBreakClock" class="sim-break-time">10:00</div>
+    <button class="btn" onclick="btEndBreak()">Continue Test</button>
+  </div>
+</div>
+
 
 <div id="secureBankGate" class="secure-bank-gate">
   <div class="secure-bank-card">
@@ -341,7 +373,7 @@ body.exam-active .watermark-layer{display:block}
   <div class="auth-card">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
       <div>
-        <div class="mvp-pill">BAUM TenPers GRE 330+ v2.8 Quality Intelligence</div>
+        <div class="mvp-pill">BAUM TenPers GRE 330+ v2.9 Full Simulation</div>
         <h2 style="margin:10px 0 4px">Student Account</h2>
         <p class="muted" style="margin:0">Create an account or sign in to continue.</p>
       </div>
@@ -388,7 +420,7 @@ body.exam-active .watermark-layer{display:block}
 <div class="mvp-shell" id="mvpDashboard">
   <div class="mvp-hero">
     <div>
-      <span class="mvp-pill" style="background:#334155;color:white">BAUM TenPers BAUM TenPers GRE 330+ v2.8 Quality Intelligence</span>
+      <span class="mvp-pill" style="background:#334155;color:white">BAUM TenPers BAUM TenPers GRE 330+ v2.9 Full Simulation</span>
       <h1 id="mvpGreeting">Your focused 330 study system</h1>
       <p style="color:#cbd5e1;max-width:760px">Practice. Time. Review. Improve. The MVP keeps only the features that matter most for a strong GRE score: targeted drills, timed CBT sections, full simulation, detailed review, and progress tracking.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
@@ -415,6 +447,20 @@ body.exam-active .watermark-layer{display:block}
 
 
 
+
+
+<div class="sim-panel" id="fullGreSimulationPanel">
+  <div class="mvp-pill">V2.9 FULL GRE SIMULATION</div>
+  <h3 style="margin:8px 0 3px">Test-Day Simulation Mode</h3>
+  <p class="muted" style="margin:0">Dedicated full-length mode with section sequencing, timed progression, scheduled break, review tracking and unanswered-question checks.</p>
+  <div class="sim-grid">
+    <div class="sim-kpi"><small>Quant</small><strong>27 questions</strong></div>
+    <div class="sim-kpi"><small>Verbal</small><strong>27 questions</strong></div>
+    <div class="sim-kpi"><small>Core timed work</small><strong>88 min</strong></div>
+    <div class="sim-kpi"><small>Break</small><strong>10 min</strong></div>
+  </div>
+  <button class="btn" style="margin-top:12px" onclick="startFullGreSimulation()">Start Full GRE Simulation</button>
+</div>
 
 <div class="quality-panel" id="questionQualityPanel">
   <div class="mvp-pill">V2.8 QUESTION QUALITY INTELLIGENCE</div>
@@ -595,7 +641,7 @@ body.exam-active .watermark-layer{display:block}
 <div class="top">
   <div class="brand baum-brand">
       <div class="baum-logo-shell"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/BT_logo.png" alt="BAUM TenPers Institute logo" onerror="this.style.display='none';this.parentElement.textContent='BAUM'"></div>
-      <div class="baum-wordmark"><strong>BAUM TenPers GRE 330+ v2.8 Quality Intelligence</strong><small>Graduate Test Preparation</small></div>
+      <div class="baum-wordmark"><strong>BAUM TenPers GRE 330+ v2.9 Full Simulation</strong><small>Graduate Test Preparation</small></div>
     </div>
   <div id="topStatus" class="muted" style="color:#cbd5e1">Standalone Offline App</div>
 <div class="user-chip"><span id="currentStudentName">Student</span><button onclick="logoutBaum()" style="border:0;background:transparent;color:#ffc533;font-weight:800;cursor:pointer">Logout</button></div>
@@ -605,7 +651,7 @@ body.exam-active .watermark-layer{display:block}
 <div class="wrap">
 <section id="home">
   <div class="card">
-    <h1>BAUM TenPers GRE 330+ v2.8 Quality Intelligence Computer-Based Practice</h1>
+    <h1>BAUM TenPers GRE 330+ v2.9 Full Simulation Computer-Based Practice</h1>
     <p class="muted">2,000-question offline bank: 1,000 Quant + 1,000 Verbal. Timed sections, full simulation, practice mode, flags, question palette, scoring, review, and local progress.</p>
   </div>
   
@@ -1069,7 +1115,7 @@ async function shareFriendLink(){
   setFriendLink();
   const url=document.getElementById('friendShareLink').value;
   if(navigator.share && location.protocol!=='file:'){
-    await navigator.share({title:'BAUM TenPers GRE 330+ v2.8 Quality Intelligence',text:'Try the BAUM TenPers GRE 330+ v2.8 Quality Intelligence preparation app.',url});
+    await navigator.share({title:'BAUM TenPers GRE 330+ v2.9 Full Simulation',text:'Try the BAUM TenPers GRE 330+ v2.9 Full Simulation preparation app.',url});
   }else{
     copyFriendLink();
   }
@@ -1762,6 +1808,75 @@ if(__btV28UpdateTheta){
   }
 }
 window.addEventListener('load',()=>setTimeout(btRenderQuality,300));
+</script>
+
+
+<script id="baum-v29-simulation-js">
+const BT_SIM={active:false,section:0,sections:[],breakTimer:null,breakRemaining:600,flags:new Set()};
+function btBuildSimulation(){
+  if(!BANK)return [];
+  const v=selectFrom('Verbal',27),q=selectFrom('Quant',27);
+  return [
+    {name:'Verbal Reasoning',items:v,minutes:41},
+    {name:'Quantitative Reasoning',items:q,minutes:47}
+  ];
+}
+function startFullGreSimulation(){
+  if(!BANK){alert('Question bank is still loading.');return}
+  BT_SIM.active=true;BT_SIM.section=0;BT_SIM.sections=btBuildSimulation();BT_SIM.flags=new Set();
+  document.body.classList.add('gre-simulation-active');
+  btStartSimSection();
+}
+function btStartSimSection(){
+  const s=BT_SIM.sections[BT_SIM.section];
+  if(!s){btFinishSimulation();return}
+  const lab=document.getElementById('simSectionLabel');if(lab)lab.textContent=`${BT_SIM.section+1}/${BT_SIM.sections.length} · ${s.name}`;
+  const bar=document.getElementById('simProgressBar');if(bar)bar.style.width=`${100*BT_SIM.section/BT_SIM.sections.length}%`;
+  begin(s.items,s.minutes,`Full GRE · ${s.name}`);
+}
+function btSectionComplete(){
+  if(!BT_SIM.active)return false;
+  if(BT_SIM.section < BT_SIM.sections.length-1){btStartBreak();return true}
+  btFinishSimulation();return true;
+}
+function btStartBreak(){
+  BT_SIM.breakRemaining=600;
+  const screen=document.getElementById('simBreakScreen');if(screen)screen.classList.add('active');
+  clearInterval(BT_SIM.breakTimer);
+  BT_SIM.breakTimer=setInterval(()=>{
+    BT_SIM.breakRemaining--;
+    const m=Math.floor(BT_SIM.breakRemaining/60),s=BT_SIM.breakRemaining%60;
+    const el=document.getElementById('simBreakClock');if(el)el.textContent=`${m}:${String(s).padStart(2,'0')}`;
+    if(BT_SIM.breakRemaining<=0)btEndBreak();
+  },1000);
+}
+function btEndBreak(){
+  clearInterval(BT_SIM.breakTimer);
+  document.getElementById('simBreakScreen')?.classList.remove('active');
+  BT_SIM.section++;btStartSimSection();
+}
+function btFinishSimulation(){
+  clearInterval(BT_SIM.breakTimer);BT_SIM.active=false;
+  document.body.classList.remove('gre-simulation-active');
+  const bar=document.getElementById('simProgressBar');if(bar)bar.style.width='100%';
+}
+function btToggleReviewFlag(index){
+  if(BT_SIM.flags.has(index))BT_SIM.flags.delete(index);else BT_SIM.flags.add(index);
+  try{localStorage.setItem('baumSimFlags',JSON.stringify([...BT_SIM.flags]))}catch(e){}
+}
+function btCheckUnanswered(answers,total){
+  const missing=[];
+  for(let i=0;i<total;i++){
+    const a=answers?.[i];
+    if(a===undefined||a===null||a===''||(Array.isArray(a)&&!a.length))missing.push(i+1);
+  }
+  return missing;
+}
+window.btToggleReviewFlag=btToggleReviewFlag;
+window.btCheckUnanswered=btCheckUnanswered;
+window.addEventListener('beforeunload',e=>{
+  if(BT_SIM.active){e.preventDefault();e.returnValue='';}
+});
 </script>
 
 </body>
