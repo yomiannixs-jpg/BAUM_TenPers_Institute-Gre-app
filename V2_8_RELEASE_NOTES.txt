@@ -1,0 +1,24 @@
+BAUM TenPers GRE 330+ v2.8 — Question Quality Intelligence
+
+Added:
+- Per-question response statistics
+- Empirical success-rate measurement
+- Empirical Easy / Medium / Hard / Very Hard classification
+- Comparison of declared vs observed difficulty
+- Automatic review flags after sufficient observations
+- Question-bank quality coverage dashboard
+- Response-volume monitoring
+- Foundation for future item discrimination and IRT calibration
+
+Retained:
+- 5,000-question bank
+- adaptive testing and score estimates
+- weakness analytics
+- personalized 330+ study plans
+- cloud-account foundation
+- server-side question-bank architecture
+- encryption / anti-copy controls
+- PWA installation
+
+Production note:
+Local item statistics are useful for development/testing. Once cloud accounts and the server question API are activated, aggregate anonymized item-response statistics server-side so calibration reflects the full student population.

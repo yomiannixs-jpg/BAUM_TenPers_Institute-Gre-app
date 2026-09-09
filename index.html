@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>BAUM TenPers BAUM TenPers GRE 330+ v2.7 Server Bank Ready</title>
+<title>BAUM TenPers BAUM TenPers GRE 330+ v2.8 Quality Intelligence</title>
 <style>
 :root{--bg:#f3f5f7;--card:#fff;--text:#111827;--muted:#64748b;--line:#d8dee8;--accent:#111827;--good:#0f766e;--bad:#b91c1c;--warn:#b45309}
 *{box-sizing:border-box} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
@@ -305,6 +305,17 @@ body.exam-active .watermark-layer{display:block}
 @media(max-width:650px){.bank-security-row{grid-template-columns:1fr}}
 </style>
 
+
+<style id="baum-v28-quality-css">
+.quality-panel{background:linear-gradient(135deg,#fff,#f6f1ff);border:1px solid #ded4ec;border-radius:18px;padding:16px;margin-top:14px}
+.quality-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.quality-kpi{background:#fff;border:1px solid #e8e0f1;border-radius:13px;padding:12px}
+.quality-kpi small{display:block;color:#71677f;font-weight:800}.quality-kpi strong{display:block;color:#230078;font-size:24px;margin-top:4px}
+.quality-list{margin-top:12px}.quality-item{display:grid;grid-template-columns:1.4fr .6fr .6fr .6fr;gap:8px;padding:9px 0;border-bottom:1px solid #eee7f5;font-size:12px}
+.qflag{font-weight:900;color:#b42336}.qgood{font-weight:900;color:#177a56}
+@media(max-width:700px){.quality-grid{grid-template-columns:1fr 1fr}.quality-item{grid-template-columns:1fr 1fr}}
+</style>
+
 </head>
 <body>
 
@@ -330,7 +341,7 @@ body.exam-active .watermark-layer{display:block}
   <div class="auth-card">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
       <div>
-        <div class="mvp-pill">BAUM TenPers GRE 330+ v2.7 Server Bank Ready</div>
+        <div class="mvp-pill">BAUM TenPers GRE 330+ v2.8 Quality Intelligence</div>
         <h2 style="margin:10px 0 4px">Student Account</h2>
         <p class="muted" style="margin:0">Create an account or sign in to continue.</p>
       </div>
@@ -377,7 +388,7 @@ body.exam-active .watermark-layer{display:block}
 <div class="mvp-shell" id="mvpDashboard">
   <div class="mvp-hero">
     <div>
-      <span class="mvp-pill" style="background:#334155;color:white">BAUM TenPers BAUM TenPers GRE 330+ v2.7 Server Bank Ready</span>
+      <span class="mvp-pill" style="background:#334155;color:white">BAUM TenPers BAUM TenPers GRE 330+ v2.8 Quality Intelligence</span>
       <h1 id="mvpGreeting">Your focused 330 study system</h1>
       <p style="color:#cbd5e1;max-width:760px">Practice. Time. Review. Improve. The MVP keeps only the features that matter most for a strong GRE score: targeted drills, timed CBT sections, full simulation, detailed review, and progress tracking.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
@@ -403,6 +414,20 @@ body.exam-active .watermark-layer{display:block}
   
 
 
+
+
+<div class="quality-panel" id="questionQualityPanel">
+  <div class="mvp-pill">V2.8 QUESTION QUALITY INTELLIGENCE</div>
+  <h3 style="margin:8px 0 3px">Question Bank Quality Monitor</h3>
+  <p class="muted" style="margin:0">Tracks empirical difficulty, response volume, success rate and potential low-quality items as students use the app.</p>
+  <div class="quality-grid">
+    <div class="quality-kpi"><small>Questions observed</small><strong id="qObs">0</strong></div>
+    <div class="quality-kpi"><small>Responses recorded</small><strong id="qResp">0</strong></div>
+    <div class="quality-kpi"><small>Items needing review</small><strong id="qFlag">0</strong></div>
+    <div class="quality-kpi"><small>Quality coverage</small><strong id="qCoverage">0%</strong></div>
+  </div>
+  <div id="qQualityList" class="quality-list muted" style="font-size:12px">Complete tests to generate item-quality statistics.</div>
+</div>
 
 <div class="bank-security-card" id="serverBankPanel">
   <div class="bank-security-row">
@@ -570,7 +595,7 @@ body.exam-active .watermark-layer{display:block}
 <div class="top">
   <div class="brand baum-brand">
       <div class="baum-logo-shell"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/BT_logo.png" alt="BAUM TenPers Institute logo" onerror="this.style.display='none';this.parentElement.textContent='BAUM'"></div>
-      <div class="baum-wordmark"><strong>BAUM TenPers GRE 330+ v2.7 Server Bank Ready</strong><small>Graduate Test Preparation</small></div>
+      <div class="baum-wordmark"><strong>BAUM TenPers GRE 330+ v2.8 Quality Intelligence</strong><small>Graduate Test Preparation</small></div>
     </div>
   <div id="topStatus" class="muted" style="color:#cbd5e1">Standalone Offline App</div>
 <div class="user-chip"><span id="currentStudentName">Student</span><button onclick="logoutBaum()" style="border:0;background:transparent;color:#ffc533;font-weight:800;cursor:pointer">Logout</button></div>
@@ -580,7 +605,7 @@ body.exam-active .watermark-layer{display:block}
 <div class="wrap">
 <section id="home">
   <div class="card">
-    <h1>BAUM TenPers GRE 330+ v2.7 Server Bank Ready Computer-Based Practice</h1>
+    <h1>BAUM TenPers GRE 330+ v2.8 Quality Intelligence Computer-Based Practice</h1>
     <p class="muted">2,000-question offline bank: 1,000 Quant + 1,000 Verbal. Timed sections, full simulation, practice mode, flags, question palette, scoring, review, and local progress.</p>
   </div>
   
@@ -1044,7 +1069,7 @@ async function shareFriendLink(){
   setFriendLink();
   const url=document.getElementById('friendShareLink').value;
   if(navigator.share && location.protocol!=='file:'){
-    await navigator.share({title:'BAUM TenPers GRE 330+ v2.7 Server Bank Ready',text:'Try the BAUM TenPers GRE 330+ v2.7 Server Bank Ready preparation app.',url});
+    await navigator.share({title:'BAUM TenPers GRE 330+ v2.8 Quality Intelligence',text:'Try the BAUM TenPers GRE 330+ v2.8 Quality Intelligence preparation app.',url});
   }else{
     copyFriendLink();
   }
@@ -1684,6 +1709,59 @@ function btRenderBankMode(){
   }
 }
 window.addEventListener('load',btRenderBankMode);
+</script>
+
+
+<script id="baum-v28-quality-js">
+function btQKey(){return 'baumQuestionQualityV28'}
+function btQLoad(){try{return JSON.parse(localStorage.getItem(btQKey())||'{}')}catch(e){return {}}}
+function btQSave(x){try{localStorage.setItem(btQKey(),JSON.stringify(x))}catch(e){}}
+function btEmpiricalBand(acc){
+  if(acc>=.80)return'Easy';
+  if(acc>=.62)return'Medium';
+  if(acc>=.42)return'Hard';
+  return'Very Hard';
+}
+function btRecordItemQuality(q,ok){
+  if(!q||!q.id)return;
+  const db=btQLoad(), id=q.id;
+  db[id]=db[id]||{id,section:q.section||'Quant',skill:q.skill||'General',declared:q.difficulty||'Medium',n:0,c:0};
+  db[id].n++; if(ok)db[id].c++;
+  db[id].last=Date.now();
+  btQSave(db);
+}
+function btRenderQuality(){
+  const db=btQLoad(), rows=Object.values(db);
+  const responses=rows.reduce((s,x)=>s+x.n,0);
+  const flagged=rows.filter(x=>{
+    if(x.n<5)return false;
+    const a=x.c/x.n, empirical=btEmpiricalBand(a);
+    return empirical!==x.declared || a<.15 || a>.95;
+  });
+  const totalBank=(window.BANK?(BANK.quant?.length||0)+(BANK.verbal?.length||0):5000);
+  const set=(id,val)=>{const e=document.getElementById(id);if(e)e.textContent=val};
+  set('qObs',rows.length);set('qResp',responses);set('qFlag',flagged.length);
+  set('qCoverage',Math.round(100*rows.length/Math.max(1,totalBank))+'%');
+  const box=document.getElementById('qQualityList');if(!box)return;
+  const display=rows.filter(x=>x.n>=3).sort((a,b)=>b.n-a.n).slice(0,12);
+  box.innerHTML=display.length?display.map(x=>{
+    const acc=x.c/x.n, emp=btEmpiricalBand(acc), flag=x.n>=5&&emp!==x.declared;
+    return `<div class="quality-item"><span><b>${x.id}</b> · ${x.skill}</span><span>${Math.round(acc*100)}% correct</span><span>${x.declared} → ${emp}</span><span class="${flag?'qflag':'qgood'}">${flag?'REVIEW':'OK'}</span></div>`
+  }).join(''):'Complete tests to generate item-quality statistics.';
+}
+const __btV28UpdateTheta=typeof btUpdateTheta==='function'?btUpdateTheta:null;
+if(__btV28UpdateTheta){
+  btUpdateTheta=function(section,isCorrect,difficulty){
+    try{
+      const q=(typeof test!=='undefined'&&test.items)?test.items[test.idx]:
+              (typeof state!=='undefined'&&state.questions)?state.questions[state.idx]:null;
+      if(q)btRecordItemQuality(q,isCorrect);
+    }catch(e){}
+    const r=__btV28UpdateTheta.apply(this,arguments);
+    btRenderQuality();return r;
+  }
+}
+window.addEventListener('load',()=>setTimeout(btRenderQuality,300));
 </script>
 
 </body>
