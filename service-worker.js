@@ -1,4 +1,4 @@
-const CACHE='baum-gre-v2-9-full-sim';
+const CACHE='baum-gre-v3-0-institutional';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./share.html'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
 self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));

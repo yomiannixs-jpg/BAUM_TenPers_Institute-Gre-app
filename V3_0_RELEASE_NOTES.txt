@@ -1,0 +1,27 @@
+BAUM TenPers GRE 330+ v3.0 — Institutional Platform
+
+Added:
+- Instructor dashboard foundation
+- Student performance overview
+- Cohort/institutional management foundation
+- Assignment creation
+- Recent student activity reporting
+- Quant and Verbal estimate reporting
+- Institutional JSON report export
+- Mock-test / assignment architecture
+- BAUM TenPers Institute institutional branding layer
+
+Retained:
+- Full GRE simulation
+- 5,000-question bank
+- adaptive testing
+- weakness analytics
+- personalized study plans
+- question-quality intelligence
+- cloud-account foundation
+- server-side question-bank architecture
+- encrypted/anti-copy test protections
+- PWA installation
+
+Production scaling:
+The current dashboard works with the active student's local profile. Multi-student cohort administration requires activating the v2.6 cloud backend/authentication and v2.7 server APIs so instructor roles can access authorized cohort records securely.

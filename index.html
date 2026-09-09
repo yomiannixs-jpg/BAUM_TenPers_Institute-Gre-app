@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>BAUM TenPers BAUM TenPers GRE 330+ v2.9 Full Simulation</title>
+<title>BAUM TenPers BAUM TenPers GRE 330+ v3.0 Institutional</title>
 <style>
 :root{--bg:#f3f5f7;--card:#fff;--text:#111827;--muted:#64748b;--line:#d8dee8;--accent:#111827;--good:#0f766e;--bad:#b91c1c;--warn:#b45309}
 *{box-sizing:border-box} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
@@ -331,6 +331,25 @@ body.gre-simulation-active .sim-banner{display:flex;justify-content:space-betwee
 @media(max-width:700px){.sim-grid{grid-template-columns:1fr 1fr}}
 </style>
 
+
+<style id="baum-v30-institutional-css">
+.institution-panel{background:linear-gradient(135deg,#230078,#50309b);color:#fff;border-radius:20px;padding:18px;margin-top:16px}
+.institution-panel .muted{color:#e5dcf7}
+.inst-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.inst-kpi{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:13px}
+.inst-kpi small{display:block;color:#e7def7;font-weight:800}.inst-kpi strong{display:block;color:#ffc533;font-size:24px;margin-top:4px}
+.inst-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.inst-actions button{border:0;border-radius:11px;padding:10px 13px;font-weight:900;cursor:pointer}
+.inst-primary{background:#ffc533;color:#160d38}.inst-secondary{background:white;color:#230078}
+.admin-drawer{position:fixed;inset:0;z-index:15000;background:rgba(15,8,35,.72);display:none;align-items:center;justify-content:center;padding:20px}
+.admin-drawer.active{display:flex}
+.admin-card{width:min(920px,96vw);max-height:88vh;overflow:auto;background:white;color:#211737;border-radius:20px;padding:20px}
+.admin-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:12px}
+.admin-table th,.admin-table td{padding:9px;border-bottom:1px solid #eee7f5;text-align:left}
+.cohort-chip{display:inline-block;background:#f1eaff;color:#230078;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900}
+@media(max-width:760px){.inst-grid{grid-template-columns:1fr 1fr}}
+</style>
+
 </head>
 <body>
 
@@ -373,7 +392,7 @@ body.gre-simulation-active .sim-banner{display:flex;justify-content:space-betwee
   <div class="auth-card">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
       <div>
-        <div class="mvp-pill">BAUM TenPers GRE 330+ v2.9 Full Simulation</div>
+        <div class="mvp-pill">BAUM TenPers GRE 330+ v3.0 Institutional</div>
         <h2 style="margin:10px 0 4px">Student Account</h2>
         <p class="muted" style="margin:0">Create an account or sign in to continue.</p>
       </div>
@@ -420,7 +439,7 @@ body.gre-simulation-active .sim-banner{display:flex;justify-content:space-betwee
 <div class="mvp-shell" id="mvpDashboard">
   <div class="mvp-hero">
     <div>
-      <span class="mvp-pill" style="background:#334155;color:white">BAUM TenPers BAUM TenPers GRE 330+ v2.9 Full Simulation</span>
+      <span class="mvp-pill" style="background:#334155;color:white">BAUM TenPers BAUM TenPers GRE 330+ v3.0 Institutional</span>
       <h1 id="mvpGreeting">Your focused 330 study system</h1>
       <p style="color:#cbd5e1;max-width:760px">Practice. Time. Review. Improve. The MVP keeps only the features that matter most for a strong GRE score: targeted drills, timed CBT sections, full simulation, detailed review, and progress tracking.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
@@ -448,6 +467,43 @@ body.gre-simulation-active .sim-banner{display:flex;justify-content:space-betwee
 
 
 
+
+
+<div class="institution-panel" id="institutionPlatform">
+  <div class="mvp-pill" style="background:#ffc533;color:#160d38">V3.0 INSTITUTIONAL PLATFORM</div>
+  <h3 style="margin:9px 0 3px">BAUM TenPers GRE — Instructor & Cohort Management</h3>
+  <p class="muted" style="margin:0">Foundation for student cohorts, assignments, mock examinations, institutional analytics and instructor reporting.</p>
+  <div class="inst-grid">
+    <div class="inst-kpi"><small>Student profiles</small><strong id="instStudents">1</strong></div>
+    <div class="inst-kpi"><small>Tests recorded</small><strong id="instTests">0</strong></div>
+    <div class="inst-kpi"><small>Assignments</small><strong id="instAssignments">0</strong></div>
+    <div class="inst-kpi"><small>Average estimate</small><strong id="instAvg">--</strong></div>
+  </div>
+  <div class="inst-actions">
+    <button class="inst-primary" onclick="openInstructorDashboard()">Instructor Dashboard</button>
+    <button class="inst-secondary" onclick="createPracticeAssignment()">Create Assignment</button>
+    <button class="inst-secondary" onclick="exportInstitutionReport()">Export Report</button>
+  </div>
+</div>
+
+<div id="adminDrawer" class="admin-drawer">
+  <div class="admin-card">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:center">
+      <div><span class="cohort-chip">BAUM TENPERS INSTITUTE</span><h2 style="margin:7px 0 0">Instructor Dashboard</h2></div>
+      <button class="btn alt" onclick="closeInstructorDashboard()">Close</button>
+    </div>
+    <div class="analytics-grid">
+      <div class="analytics-kpi"><span>Active student</span><strong id="admStudent">--</strong></div>
+      <div class="analytics-kpi"><span>Completed sessions</span><strong id="admSessions">0</strong></div>
+      <div class="analytics-kpi"><span>Quant estimate</span><strong id="admQ">--</strong></div>
+      <div class="analytics-kpi"><span>Verbal estimate</span><strong id="admV">--</strong></div>
+    </div>
+    <h3>Recent Student Activity</h3>
+    <div id="admActivity" class="analytics-empty">No activity recorded yet.</div>
+    <h3>Assignments</h3>
+    <div id="admAssignments" class="analytics-empty">No assignments created yet.</div>
+  </div>
+</div>
 
 <div class="sim-panel" id="fullGreSimulationPanel">
   <div class="mvp-pill">V2.9 FULL GRE SIMULATION</div>
@@ -641,7 +697,7 @@ body.gre-simulation-active .sim-banner{display:flex;justify-content:space-betwee
 <div class="top">
   <div class="brand baum-brand">
       <div class="baum-logo-shell"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/BT_logo.png" alt="BAUM TenPers Institute logo" onerror="this.style.display='none';this.parentElement.textContent='BAUM'"></div>
-      <div class="baum-wordmark"><strong>BAUM TenPers GRE 330+ v2.9 Full Simulation</strong><small>Graduate Test Preparation</small></div>
+      <div class="baum-wordmark"><strong>BAUM TenPers GRE 330+ v3.0 Institutional</strong><small>Graduate Test Preparation</small></div>
     </div>
   <div id="topStatus" class="muted" style="color:#cbd5e1">Standalone Offline App</div>
 <div class="user-chip"><span id="currentStudentName">Student</span><button onclick="logoutBaum()" style="border:0;background:transparent;color:#ffc533;font-weight:800;cursor:pointer">Logout</button></div>
@@ -651,7 +707,7 @@ body.gre-simulation-active .sim-banner{display:flex;justify-content:space-betwee
 <div class="wrap">
 <section id="home">
   <div class="card">
-    <h1>BAUM TenPers GRE 330+ v2.9 Full Simulation Computer-Based Practice</h1>
+    <h1>BAUM TenPers GRE 330+ v3.0 Institutional Computer-Based Practice</h1>
     <p class="muted">2,000-question offline bank: 1,000 Quant + 1,000 Verbal. Timed sections, full simulation, practice mode, flags, question palette, scoring, review, and local progress.</p>
   </div>
   
@@ -1115,7 +1171,7 @@ async function shareFriendLink(){
   setFriendLink();
   const url=document.getElementById('friendShareLink').value;
   if(navigator.share && location.protocol!=='file:'){
-    await navigator.share({title:'BAUM TenPers GRE 330+ v2.9 Full Simulation',text:'Try the BAUM TenPers GRE 330+ v2.9 Full Simulation preparation app.',url});
+    await navigator.share({title:'BAUM TenPers GRE 330+ v3.0 Institutional',text:'Try the BAUM TenPers GRE 330+ v3.0 Institutional preparation app.',url});
   }else{
     copyFriendLink();
   }
@@ -1877,6 +1933,48 @@ window.btCheckUnanswered=btCheckUnanswered;
 window.addEventListener('beforeunload',e=>{
   if(BT_SIM.active){e.preventDefault();e.returnValue='';}
 });
+</script>
+
+
+<script id="baum-v30-institutional-js">
+function btInstUser(){try{return JSON.parse(localStorage.getItem('baumGreCurrentUser')||'null')}catch(e){return null}}
+function btInstHistory(){
+  try{
+    const u=btInstUser(),email=String(u?.email||'').toLowerCase();
+    return JSON.parse(localStorage.getItem(`baumAnalyticsHistory:${email}`)||localStorage.getItem('baumAnalyticsHistory')||'[]')
+  }catch(e){return []}
+}
+function btAssignments(){try{return JSON.parse(localStorage.getItem('baumInstitutionAssignments')||'[]')}catch(e){return []}}
+function btInstAcc(c,t){return t?Math.round(100*c/t):null}
+function btInstScore(a){return a===null?null:Math.max(130,Math.min(170,Math.round(130+40*a/100)))}
+function renderInstitutionDashboard(){
+  const u=btInstUser(),h=btInstHistory(),as=btAssignments();
+  let qc=0,qt=0,vc=0,vt=0;
+  h.forEach(x=>{qc+=x.quant?.c||0;qt+=x.quant?.t||0;vc+=x.verbal?.c||0;vt+=x.verbal?.t||0});
+  const q=btInstScore(btInstAcc(qc,qt)),v=btInstScore(btInstAcc(vc,vt));
+  const set=(id,val)=>{const e=document.getElementById(id);if(e)e.textContent=val};
+  set('instStudents',u?1:0);set('instTests',h.length);set('instAssignments',as.length);
+  set('instAvg',q&&v?q+v:'--');set('admStudent',u?.name||u?.email||'--');set('admSessions',h.length);set('admQ',q||'--');set('admV',v||'--');
+  const act=document.getElementById('admActivity');
+  if(act)act.innerHTML=h.length?h.slice(0,12).map(x=>`<div class="resultRow"><span>${new Date(x.ts).toLocaleDateString()} · ${x.name||'GRE session'}</span><b>Q ${btInstScore(btInstAcc(x.quant?.c||0,x.quant?.t||0))||'--'} · V ${btInstScore(btInstAcc(x.verbal?.c||0,x.verbal?.t||0))||'--'}</b></div>`).join(''):'No activity recorded yet.';
+  const aa=document.getElementById('admAssignments');
+  if(aa)aa.innerHTML=as.length?as.map(x=>`<div class="resultRow"><span>${x.title}</span><b>${x.type} · ${x.count} questions</b></div>`).join(''):'No assignments created yet.';
+}
+function openInstructorDashboard(){renderInstitutionDashboard();document.getElementById('adminDrawer')?.classList.add('active')}
+function closeInstructorDashboard(){document.getElementById('adminDrawer')?.classList.remove('active')}
+function createPracticeAssignment(){
+  const title=prompt('Assignment title','Weekly GRE Diagnostic');if(!title)return;
+  const type=prompt('Type: Quant, Verbal or Mixed','Mixed')||'Mixed';
+  const count=Math.max(5,Math.min(54,+(prompt('Number of questions','20')||20)));
+  const arr=btAssignments();arr.unshift({id:Date.now(),title,type,count,created:new Date().toISOString(),status:'Active'});
+  localStorage.setItem('baumInstitutionAssignments',JSON.stringify(arr));renderInstitutionDashboard();alert('Assignment created.');
+}
+function exportInstitutionReport(){
+  const report={institution:'BAUM TenPers Institute',generatedAt:new Date().toISOString(),student:btInstUser(),history:btInstHistory(),assignments:btAssignments()};
+  const blob=new Blob([JSON.stringify(report,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='BAUM_GRE_Institution_Report.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),500);
+}
+window.addEventListener('load',()=>setTimeout(renderInstitutionDashboard,350));
 </script>
 
 </body>
