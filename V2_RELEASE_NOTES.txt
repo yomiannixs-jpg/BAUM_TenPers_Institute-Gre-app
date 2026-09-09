@@ -1,0 +1,4 @@
+BAUM TenPers GRE 330+ v2.0
+
+Question bank: 2,500 Quant + 2,500 Verbal = 5,000 total.
+Added 2,000 newly authored harder GRE-style questions and device-aware PWA installation.
