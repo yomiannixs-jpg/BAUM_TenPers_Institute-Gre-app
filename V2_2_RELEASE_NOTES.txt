@@ -1,0 +1,12 @@
+BAUM TenPers GRE 330+ v2.2 Secure
+
+New:
+- Test selection dropdown
+- Quant only
+- Verbal only
+- Quant + Verbal together
+- Practice set
+- Timed section
+- Full simulation
+- Adjustable question count for practice/timed sets
+- Existing encryption and anti-copy protections retained

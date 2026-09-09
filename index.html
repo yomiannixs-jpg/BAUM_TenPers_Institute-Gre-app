@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>BAUM TenPers BAUM TenPers GRE 330+ v2.1 Secure</title>
+<title>BAUM TenPers BAUM TenPers GRE 330+ v2.2 Secure</title>
 <style>
 :root{--bg:#f3f5f7;--card:#fff;--text:#111827;--muted:#64748b;--line:#d8dee8;--accent:#111827;--good:#0f766e;--bad:#b91c1c;--warn:#b45309}
 *{box-sizing:border-box} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
@@ -208,6 +208,19 @@ body.exam-active .watermark-layer{display:block}
 }
 </style>
 
+
+<style id="baum-test-selector-css">
+.test-select-panel{
+  background:linear-gradient(135deg,#fff9ea,#f4efff);
+  border:1px solid #e0d4ef;border-radius:18px;padding:18px;margin-top:16px
+}
+.test-select-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:12px;align-items:end}
+.test-select-grid label{font-size:12px;font-weight:800;color:#5d5573}
+.test-select-grid select{width:100%;margin-top:6px;border:1px solid #d8cee7;border-radius:12px;padding:12px;background:white;color:#160d38;font-weight:700}
+.test-mode-note{font-size:12px;color:#6a6480;margin-top:8px}
+@media(max-width:850px){.test-select-grid{grid-template-columns:1fr}}
+</style>
+
 </head>
 <body>
 
@@ -233,7 +246,7 @@ body.exam-active .watermark-layer{display:block}
   <div class="auth-card">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
       <div>
-        <div class="mvp-pill">BAUM TenPers GRE 330+ v2.1 Secure</div>
+        <div class="mvp-pill">BAUM TenPers GRE 330+ v2.2 Secure</div>
         <h2 style="margin:10px 0 4px">Student Account</h2>
         <p class="muted" style="margin:0">Create an account or sign in to continue.</p>
       </div>
@@ -280,7 +293,7 @@ body.exam-active .watermark-layer{display:block}
 <div class="mvp-shell" id="mvpDashboard">
   <div class="mvp-hero">
     <div>
-      <span class="mvp-pill" style="background:#334155;color:white">BAUM TenPers BAUM TenPers GRE 330+ v2.1 Secure</span>
+      <span class="mvp-pill" style="background:#334155;color:white">BAUM TenPers BAUM TenPers GRE 330+ v2.2 Secure</span>
       <h1 id="mvpGreeting">Your focused 330 study system</h1>
       <p style="color:#cbd5e1;max-width:760px">Practice. Time. Review. Improve. The MVP keeps only the features that matter most for a strong GRE score: targeted drills, timed CBT sections, full simulation, detailed review, and progress tracking.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
@@ -377,7 +390,7 @@ body.exam-active .watermark-layer{display:block}
 <div class="top">
   <div class="brand baum-brand">
       <div class="baum-logo-shell"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/BT_logo.png" alt="BAUM TenPers Institute logo" onerror="this.style.display='none';this.parentElement.textContent='BAUM'"></div>
-      <div class="baum-wordmark"><strong>BAUM TenPers GRE 330+ v2.1 Secure</strong><small>Graduate Test Preparation</small></div>
+      <div class="baum-wordmark"><strong>BAUM TenPers GRE 330+ v2.2 Secure</strong><small>Graduate Test Preparation</small></div>
     </div>
   <div id="topStatus" class="muted" style="color:#cbd5e1">Standalone Offline App</div>
 <div class="user-chip"><span id="currentStudentName">Student</span><button onclick="logoutBaum()" style="border:0;background:transparent;color:#ffc533;font-weight:800;cursor:pointer">Logout</button></div>
@@ -387,10 +400,42 @@ body.exam-active .watermark-layer{display:block}
 <div class="wrap">
 <section id="home">
   <div class="card">
-    <h1>BAUM TenPers GRE 330+ v2.1 Secure Computer-Based Practice</h1>
+    <h1>BAUM TenPers GRE 330+ v2.2 Secure Computer-Based Practice</h1>
     <p class="muted">2,000-question offline bank: 1,000 Quant + 1,000 Verbal. Timed sections, full simulation, practice mode, flags, question palette, scoring, review, and local progress.</p>
   </div>
-  <div class="grid g3" style="margin-top:16px">
+  
+<div class="test-select-panel">
+  <div class="mvp-pill">TEST SELECTION</div>
+  <h3 style="margin:10px 0 4px">Choose your test</h3>
+  <div class="test-select-grid">
+    <label>Test type
+      <select id="mainTestType" onchange="updateMainTestOptions()">
+        <option value="Quant">Quant only</option>
+        <option value="Verbal">Verbal only</option>
+        <option value="Mixed" selected>Quant + Verbal together</option>
+      </select>
+    </label>
+    <label>Test format
+      <select id="mainTestFormat" onchange="updateMainTestOptions()">
+        <option value="practice">Practice set</option>
+        <option value="section">Timed section</option>
+        <option value="full" selected>Full simulation</option>
+      </select>
+    </label>
+    <label>Question count
+      <select id="mainTestCount">
+        <option>10</option>
+        <option>20</option>
+        <option>27</option>
+        <option selected>54</option>
+      </select>
+    </label>
+  </div>
+  <p id="mainTestNote" class="test-mode-note">Quant + Verbal full simulation: 27 Quant + 27 Verbal questions.</p>
+  <button class="btn" style="margin-top:12px" onclick="startSelectedTest()">Start Selected Test</button>
+</div>
+
+<div class="grid g3" style="margin-top:16px">
     <div class="mode">
       <h3>Official-Style Section</h3><p class="muted">12 or 15 questions with GRE-style section timing.</p>
       <button class="btn" onclick="startPreset('section')">Start Section</button>
@@ -812,7 +857,7 @@ async function shareFriendLink(){
   setFriendLink();
   const url=document.getElementById('friendShareLink').value;
   if(navigator.share && location.protocol!=='file:'){
-    await navigator.share({title:'BAUM TenPers GRE 330+ v2.1 Secure',text:'Try the BAUM TenPers GRE 330+ v2.1 Secure preparation app.',url});
+    await navigator.share({title:'BAUM TenPers GRE 330+ v2.2 Secure',text:'Try the BAUM TenPers GRE 330+ v2.2 Secure preparation app.',url});
   }else{
     copyFriendLink();
   }
@@ -910,6 +955,80 @@ window.addEventListener('load',async()=>{
   }
   renderWatermarks();
 });
+</script>
+
+
+<script id="baum-test-selector-js">
+function updateMainTestOptions(){
+  const type=document.getElementById('mainTestType')?.value||'Mixed';
+  const format=document.getElementById('mainTestFormat')?.value||'full';
+  const count=document.getElementById('mainTestCount');
+  const note=document.getElementById('mainTestNote');
+  if(!count||!note)return;
+
+  if(format==='full'){
+    if(type==='Mixed'){
+      count.value='54';
+      note.textContent='Quant + Verbal full simulation: 27 Quant + 27 Verbal questions.';
+    }else{
+      count.value='27';
+      note.textContent=`${type} full simulation: 27 questions.`;
+    }
+  }else if(format==='section'){
+    count.value= type==='Mixed' ? '20' : '20';
+    note.textContent= type==='Mixed'
+      ? 'Mixed timed section: Quant and Verbal questions in one timed set.'
+      : `${type} timed section.`;
+  }else{
+    note.textContent= type==='Mixed'
+      ? 'Mixed practice set using both Quant and Verbal.'
+      : `${type} practice set.`;
+  }
+}
+function startSelectedTest(){
+  const type=document.getElementById('mainTestType')?.value||'Mixed';
+  const format=document.getElementById('mainTestFormat')?.value||'full';
+  const count=+(document.getElementById('mainTestCount')?.value||20);
+
+  if(!BANK){ alert('Question bank is still loading. Please wait a moment.'); return; }
+
+  if(format==='full'){
+    if(type==='Quant'){
+      begin(selectFrom('Quant',27),47,'Quant Full Simulation');
+    }else if(type==='Verbal'){
+      begin(selectFrom('Verbal',27),41,'Verbal Full Simulation');
+    }else{
+      const q=selectFrom('Quant',27);
+      const v=selectFrom('Verbal',27);
+      begin([...v,...q],88,'Quant + Verbal Full Simulation');
+    }
+    return;
+  }
+
+  if(format==='section'){
+    if(type==='Quant'){
+      const mins=count<=12?21:Math.max(21,Math.round(count*1.73));
+      begin(selectFrom('Quant',count),mins,`Quant ${count}-Question Timed Section`);
+    }else if(type==='Verbal'){
+      const mins=count<=12?18:Math.max(18,Math.round(count*1.53));
+      begin(selectFrom('Verbal',count),mins,`Verbal ${count}-Question Timed Section`);
+    }else{
+      const qCount=Math.ceil(count/2),vCount=Math.floor(count/2);
+      const q=selectFrom('Quant',qCount),v=selectFrom('Verbal',vCount);
+      begin(shuffle([...q,...v]),Math.max(20,Math.round(count*1.6)),`Mixed ${count}-Question Timed Section`);
+    }
+    return;
+  }
+
+  // practice mode
+  if(type==='Mixed'){
+    const qCount=Math.ceil(count/2),vCount=Math.floor(count/2);
+    begin(shuffle([...selectFrom('Quant',qCount),...selectFrom('Verbal',vCount)]),null,`Mixed ${count}-Question Practice`);
+  }else{
+    begin(selectFrom(type,count),null,`${type} ${count}-Question Practice`);
+  }
+}
+window.addEventListener('load',updateMainTestOptions);
 </script>
 
 </body>
