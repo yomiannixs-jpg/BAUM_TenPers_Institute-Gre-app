@@ -1,0 +1,43 @@
+BAUM TenPers GRE v2.7 — Question API Contract
+
+POST /questions/session
+Authorization: Bearer <authenticated student token>
+Content-Type: application/json
+
+Request:
+{
+  "section": "Quant" | "Verbal" | "Mixed",
+  "count": 10..54,
+  "format": "practice" | "section" | "full" | "adaptive"
+}
+
+Response:
+{
+  "session_id": "opaque-id",
+  "expires_at": "ISO-8601",
+  "questions": [
+    {
+      "id": "opaque-question-id",
+      "section": "Quant",
+      "skill": "Algebra",
+      "difficulty": "Hard",
+      "prompt": "...",
+      "choices": ["...", "...", "...", "...", "..."]
+    }
+  ]
+}
+
+IMPORTANT PRODUCTION RULE:
+Do NOT send answer keys or explanations in the initial question payload.
+Grade answers server-side or return explanations only after submission.
+
+POST /questions/submit
+Request:
+{
+  "session_id": "opaque-id",
+  "answers": [{"question_id":"...","answer":"..."}]
+}
+
+Response should contain score/results and only then the permitted explanations.
+
+The downloadable app retains its encrypted local bank as a fallback until the production API is configured.

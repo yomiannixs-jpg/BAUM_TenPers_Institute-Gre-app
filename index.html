@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>BAUM TenPers BAUM TenPers GRE 330+ v2.3 Adaptive</title>
+<title>BAUM TenPers BAUM TenPers GRE 330+ v2.7 Server Bank Ready</title>
 <style>
 :root{--bg:#f3f5f7;--card:#fff;--text:#111827;--muted:#64748b;--line:#d8dee8;--accent:#111827;--good:#0f766e;--bad:#b91c1c;--warn:#b45309}
 *{box-sizing:border-box} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
@@ -234,6 +234,77 @@ body.exam-active .watermark-layer{display:block}
 @media(max-width:750px){.adaptive-status,.adaptive-result-grid{grid-template-columns:1fr 1fr}}
 </style>
 
+
+<style id="baum-v24-analytics-css">
+.analytics-panel{
+  background:#fff;border:1px solid #e0d7ef;border-radius:20px;padding:18px;margin-top:16px
+}
+.analytics-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.analytics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.analytics-kpi{background:linear-gradient(135deg,#f8f4ff,#fffaf0);border:1px solid #e7def3;border-radius:14px;padding:14px}
+.analytics-kpi span{display:block;color:#6a6480;font-size:12px;font-weight:800}
+.analytics-kpi strong{display:block;color:#230078;font-size:26px;margin-top:5px}
+.analytics-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.analytics-card{border:1px solid #e7def3;border-radius:14px;padding:14px;background:white}
+.skill-row{display:grid;grid-template-columns:1.4fr .7fr .7fr;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid #eee8f5}
+.skill-row:last-child{border-bottom:0}
+.skill-bar{height:8px;background:#eee8f5;border-radius:999px;overflow:hidden;margin-top:5px}
+.skill-bar>div{height:100%;background:linear-gradient(90deg,#230078,#ffc533)}
+.priority-high{color:#b42336;font-weight:900}
+.priority-med{color:#b46b00;font-weight:900}
+.priority-low{color:#177a56;font-weight:900}
+.diagnostic-callout{
+  margin-top:14px;border-radius:16px;padding:16px;
+  background:linear-gradient(135deg,#230078,#5530a5);color:white
+}
+.diagnostic-callout b{color:#ffc533}
+.analytics-empty{color:#77708a;font-size:13px;padding:12px 0}
+@media(max-width:850px){
+  .analytics-grid,.analytics-two{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .analytics-grid,.analytics-two{grid-template-columns:1fr}
+  .skill-row{grid-template-columns:1fr}
+}
+</style>
+
+
+<style id="baum-v25-plan-css">
+.study-plan-panel{background:linear-gradient(135deg,#fffaf0,#f5f0ff);border:1px solid #dfd3ef;border-radius:20px;padding:18px;margin-top:16px}
+.plan-form{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.plan-form label{font-size:11px;font-weight:900;color:#625879;text-transform:uppercase}
+.plan-form input,.plan-form select{width:100%;box-sizing:border-box;margin-top:5px;padding:11px;border:1px solid #d9cee8;border-radius:11px;background:white}
+.plan-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.plan-kpi{background:#fff;border:1px solid #e6dcef;border-radius:13px;padding:12px}
+.plan-kpi small{display:block;color:#706782}.plan-kpi strong{display:block;font-size:23px;color:#230078;margin-top:4px}
+.week-card{background:#fff;border:1px solid #e5dcef;border-radius:14px;padding:14px;margin-top:10px}
+.week-card h4{margin:0 0 7px;color:#230078}.day-chip{display:inline-block;background:#f1eaff;border-radius:999px;padding:5px 8px;margin:3px;font-size:11px;font-weight:800}
+.plan-focus{border-left:4px solid #ffc533;padding-left:10px;margin:8px 0;color:#4e4661}
+@media(max-width:850px){.plan-form,.plan-summary{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.plan-form,.plan-summary{grid-template-columns:1fr}}
+</style>
+
+
+<style id="baum-v26-cloud-css">
+.cloud-card{background:linear-gradient(135deg,#eef9ff,#f7f1ff);border:1px solid #d6dfef;border-radius:18px;padding:16px;margin-top:14px}
+.cloud-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.cloud-status{display:inline-flex;align-items:center;gap:7px;font-weight:900;font-size:12px}
+.cloud-dot{width:9px;height:9px;border-radius:50%;background:#b58a00}
+.cloud-dot.online{background:#16865d}.cloud-dot.offline{background:#b42336}
+.sync-pill{display:inline-block;padding:5px 9px;border-radius:999px;background:#fff;border:1px solid #dcd5e8;font-size:11px;font-weight:800;margin:3px}
+@media(max-width:650px){.cloud-row{grid-template-columns:1fr}}
+</style>
+
+
+<style id="baum-v27-bank-css">
+.bank-security-card{background:linear-gradient(135deg,#f5f0ff,#fff9e8);border:1px solid #ddd1ee;border-radius:18px;padding:16px;margin-top:14px}
+.bank-security-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.bank-mode{font-size:12px;font-weight:900;color:#230078}
+.bank-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#b58a00;margin-right:6px}
+.bank-dot.live{background:#16865d}
+@media(max-width:650px){.bank-security-row{grid-template-columns:1fr}}
+</style>
+
 </head>
 <body>
 
@@ -259,7 +330,7 @@ body.exam-active .watermark-layer{display:block}
   <div class="auth-card">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
       <div>
-        <div class="mvp-pill">BAUM TenPers GRE 330+ v2.3 Adaptive</div>
+        <div class="mvp-pill">BAUM TenPers GRE 330+ v2.7 Server Bank Ready</div>
         <h2 style="margin:10px 0 4px">Student Account</h2>
         <p class="muted" style="margin:0">Create an account or sign in to continue.</p>
       </div>
@@ -306,7 +377,7 @@ body.exam-active .watermark-layer{display:block}
 <div class="mvp-shell" id="mvpDashboard">
   <div class="mvp-hero">
     <div>
-      <span class="mvp-pill" style="background:#334155;color:white">BAUM TenPers BAUM TenPers GRE 330+ v2.3 Adaptive</span>
+      <span class="mvp-pill" style="background:#334155;color:white">BAUM TenPers BAUM TenPers GRE 330+ v2.7 Server Bank Ready</span>
       <h1 id="mvpGreeting">Your focused 330 study system</h1>
       <p style="color:#cbd5e1;max-width:760px">Practice. Time. Review. Improve. The MVP keeps only the features that matter most for a strong GRE score: targeted drills, timed CBT sections, full simulation, detailed review, and progress tracking.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
@@ -329,7 +400,103 @@ body.exam-active .watermark-layer{display:block}
     <div class="mvp-kpi"><span class="muted">Current streak</span><b id="mvpStreak">0</b><small>days</small></div>
   </div>
 
-  <div class="mvp-actions">
+  
+
+
+
+<div class="bank-security-card" id="serverBankPanel">
+  <div class="bank-security-row">
+    <div>
+      <div class="mvp-pill">V2.7 QUESTION DELIVERY SECURITY</div>
+      <h3 style="margin:8px 0 4px">Server-Side Question Bank Ready</h3>
+      <div class="bank-mode"><span id="bankModeDot" class="bank-dot"></span><span id="bankModeText">Protected local fallback active</span></div>
+      <p class="muted" style="margin:7px 0 0">Production mode can request only the questions needed for the current test session instead of exposing the entire bank to the browser.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cloud-card" id="cloudAccountPanel">
+  <div class="cloud-row">
+    <div>
+      <div class="mvp-pill">V2.6 CLOUD ACCOUNT FOUNDATION</div>
+      <h3 style="margin:8px 0 3px">Student Sync & Account Portability</h3>
+      <div class="cloud-status"><span id="cloudDot" class="cloud-dot"></span><span id="cloudStatusText">Checking connection…</span></div>
+      <p class="muted" style="margin:7px 0 0">Your GRE profile is prepared for secure cross-device synchronization. Local progress continues to work offline.</p>
+    </div>
+    <button class="btn alt" onclick="exportStudentProfile()">Export My Progress</button>
+  </div>
+  <div style="margin-top:10px">
+    <span class="sync-pill">Test history</span>
+    <span class="sync-pill">Weakness analytics</span>
+    <span class="sync-pill">Adaptive ability</span>
+    <span class="sync-pill">Study plan</span>
+    <span class="sync-pill">Bookmarks</span>
+  </div>
+</div>
+
+<div class="study-plan-panel" id="personalStudyPlan">
+  <div class="mvp-pill">V2.5 PERSONALIZED 330+ PLAN</div>
+  <h3 style="margin:8px 0 3px">Build My GRE Study Plan</h3>
+  <p class="muted" style="margin:0">Set your exam date, current score, target and weekly availability. The plan uses your stored weakness analytics to prioritize study.</p>
+
+  <div class="plan-form">
+    <label>GRE test date<input id="planDate" type="date"></label>
+    <label>Current total score<input id="planCurrent" type="number" min="260" max="340" value="300"></label>
+    <label>Target score<input id="planTarget" type="number" min="260" max="340" value="330"></label>
+    <label>Hours per week<select id="planHours"><option>5</option><option selected>10</option><option>15</option><option>20</option><option>25</option></select></label>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+    <button class="btn" onclick="generateStudyPlan()">Generate Personalized Plan</button>
+    <button class="btn alt" onclick="saveStudyPlan()">Save Plan</button>
+  </div>
+  <div id="planOutput" class="analytics-empty">Generate a plan to begin.</div>
+</div>
+
+<div class="analytics-panel" id="performanceAnalytics">
+  <div class="analytics-head">
+    <div>
+      <div class="mvp-pill">V2.4 PERFORMANCE ANALYTICS</div>
+      <h3 style="margin:8px 0 3px">Score & Weakness Diagnostics</h3>
+      <p class="muted" style="margin:0">Tracks accuracy, question difficulty, skill weaknesses, and estimated score progression.</p>
+    </div>
+    <button class="btn alt" onclick="renderAdvancedAnalytics()">Refresh Analytics</button>
+  </div>
+
+  <div class="analytics-grid">
+    <div class="analytics-kpi"><span>Quant accuracy</span><strong id="anaQuantAcc">--</strong></div>
+    <div class="analytics-kpi"><span>Verbal accuracy</span><strong id="anaVerbalAcc">--</strong></div>
+    <div class="analytics-kpi"><span>Estimated Quant</span><strong id="anaQuantScore">--</strong></div>
+    <div class="analytics-kpi"><span>Estimated Verbal</span><strong id="anaVerbalScore">--</strong></div>
+  </div>
+
+  <div class="analytics-two">
+    <div class="analytics-card">
+      <h3 style="margin-top:0">Weakest Skills</h3>
+      <div id="anaWeakSkills" class="analytics-empty">Complete more questions to build a diagnostic profile.</div>
+    </div>
+    <div class="analytics-card">
+      <h3 style="margin-top:0">Difficulty Performance</h3>
+      <div id="anaDifficulty" class="analytics-empty">No difficulty statistics yet.</div>
+    </div>
+  </div>
+
+  <div class="analytics-two">
+    <div class="analytics-card">
+      <h3 style="margin-top:0">Recent Score Trend</h3>
+      <div id="anaTrend" class="analytics-empty">No completed score history yet.</div>
+    </div>
+    <div class="analytics-card">
+      <h3 style="margin-top:0">Recommended Focus</h3>
+      <div id="anaFocus" class="analytics-empty">Complete a timed or adaptive test to generate recommendations.</div>
+    </div>
+  </div>
+
+  <div id="anaDiagnostic" class="diagnostic-callout">
+    <b>330+ diagnostic:</b> complete at least 3 timed/adaptive sessions for a more stable recommendation.
+  </div>
+</div>
+
+<div class="mvp-actions">
     <div class="mvp-card">
       <span class="mvp-pill">DAILY</span>
       <h3 style="margin-top:10px">Targeted Practice</h3>
@@ -403,7 +570,7 @@ body.exam-active .watermark-layer{display:block}
 <div class="top">
   <div class="brand baum-brand">
       <div class="baum-logo-shell"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/BT_logo.png" alt="BAUM TenPers Institute logo" onerror="this.style.display='none';this.parentElement.textContent='BAUM'"></div>
-      <div class="baum-wordmark"><strong>BAUM TenPers GRE 330+ v2.3 Adaptive</strong><small>Graduate Test Preparation</small></div>
+      <div class="baum-wordmark"><strong>BAUM TenPers GRE 330+ v2.7 Server Bank Ready</strong><small>Graduate Test Preparation</small></div>
     </div>
   <div id="topStatus" class="muted" style="color:#cbd5e1">Standalone Offline App</div>
 <div class="user-chip"><span id="currentStudentName">Student</span><button onclick="logoutBaum()" style="border:0;background:transparent;color:#ffc533;font-weight:800;cursor:pointer">Logout</button></div>
@@ -413,7 +580,7 @@ body.exam-active .watermark-layer{display:block}
 <div class="wrap">
 <section id="home">
   <div class="card">
-    <h1>BAUM TenPers GRE 330+ v2.3 Adaptive Computer-Based Practice</h1>
+    <h1>BAUM TenPers GRE 330+ v2.7 Server Bank Ready Computer-Based Practice</h1>
     <p class="muted">2,000-question offline bank: 1,000 Quant + 1,000 Verbal. Timed sections, full simulation, practice mode, flags, question palette, scoring, review, and local progress.</p>
   </div>
   
@@ -877,7 +1044,7 @@ async function shareFriendLink(){
   setFriendLink();
   const url=document.getElementById('friendShareLink').value;
   if(navigator.share && location.protocol!=='file:'){
-    await navigator.share({title:'BAUM TenPers GRE 330+ v2.3 Adaptive',text:'Try the BAUM TenPers GRE 330+ v2.3 Adaptive preparation app.',url});
+    await navigator.share({title:'BAUM TenPers GRE 330+ v2.7 Server Bank Ready',text:'Try the BAUM TenPers GRE 330+ v2.7 Server Bank Ready preparation app.',url});
   }else{
     copyFriendLink();
   }
@@ -1191,6 +1358,332 @@ function btAdaptiveSummary(){
 }
 window.btAdaptiveSummary=btAdaptiveSummary;
 window.addEventListener('load',btRenderAdaptive);
+</script>
+
+
+<script id="baum-v24-analytics-js">
+function btUserStoreKey(base){
+  try{
+    const u=JSON.parse(localStorage.getItem('baumGreCurrentUser')||'null');
+    return u ? `${base}:${String(u.email||u.name||'student').toLowerCase()}` : base;
+  }catch(e){return base}
+}
+function btLoadJSON(key,fallback){
+  try{return JSON.parse(localStorage.getItem(btUserStoreKey(key))||JSON.stringify(fallback))}
+  catch(e){return fallback}
+}
+function btSaveJSON(key,val){
+  try{localStorage.setItem(btUserStoreKey(key),JSON.stringify(val))}catch(e){}
+}
+function btAccuracy(correct,total){return total?Math.round(100*correct/total):null}
+function btApproxScore(acc){
+  if(acc===null)return null;
+  // practice estimate only
+  return Math.max(130,Math.min(170,Math.round(130+40*(acc/100))));
+}
+function btRecordAnalyticsFromState(){
+  try{
+    const qs=(typeof state!=='undefined' && state.questions)?state.questions:[];
+    const ans=(typeof state!=='undefined' && state.answers)?state.answers:[];
+    if(!qs.length)return;
+
+    const history=btLoadJSON('baumAnalyticsHistory',[]);
+    const skillStats=btLoadJSON('baumSkillStats',{});
+    const diffStats=btLoadJSON('baumDifficultyStats',{});
+    const sectionStats={Quant:{c:0,t:0},Verbal:{c:0,t:0}};
+
+    qs.forEach((q,i)=>{
+      const section=q.section==='Verbal'?'Verbal':'Quant';
+      const ok=typeof isCorrect==='function' ? isCorrect(q,ans[i]) : false;
+      sectionStats[section].t++;
+      if(ok)sectionStats[section].c++;
+
+      const sk=q.skill||'General';
+      skillStats[sk]=skillStats[sk]||{c:0,t:0,section};
+      skillStats[sk].t++; if(ok)skillStats[sk].c++;
+
+      const df=q.difficulty||'Medium';
+      diffStats[df]=diffStats[df]||{c:0,t:0};
+      diffStats[df].t++; if(ok)diffStats[df].c++;
+    });
+
+    history.unshift({
+      ts:Date.now(),
+      name:(typeof state!=='undefined'&&state.name)||'Practice Session',
+      quant:sectionStats.Quant,
+      verbal:sectionStats.Verbal
+    });
+    btSaveJSON('baumAnalyticsHistory',history.slice(0,100));
+    btSaveJSON('baumSkillStats',skillStats);
+    btSaveJSON('baumDifficultyStats',diffStats);
+  }catch(e){console.warn('analytics record',e)}
+}
+function renderAdvancedAnalytics(){
+  const skillStats=btLoadJSON('baumSkillStats',{});
+  const diffStats=btLoadJSON('baumDifficultyStats',{});
+  const hist=btLoadJSON('baumAnalyticsHistory',[]);
+
+  let qc=0,qt=0,vc=0,vt=0;
+  hist.forEach(h=>{
+    qc+=h.quant?.c||0;qt+=h.quant?.t||0;
+    vc+=h.verbal?.c||0;vt+=h.verbal?.t||0;
+  });
+
+  const qa=btAccuracy(qc,qt),va=btAccuracy(vc,vt);
+  const qEl=document.getElementById('anaQuantAcc'),vEl=document.getElementById('anaVerbalAcc');
+  const qsEl=document.getElementById('anaQuantScore'),vsEl=document.getElementById('anaVerbalScore');
+  if(qEl)qEl.textContent=qa===null?'--':qa+'%';
+  if(vEl)vEl.textContent=va===null?'--':va+'%';
+  if(qsEl)qsEl.textContent=qa===null?'--':btApproxScore(qa);
+  if(vsEl)vsEl.textContent=va===null?'--':btApproxScore(va);
+
+  const skills=Object.entries(skillStats).map(([k,s])=>({
+    skill:k,acc:btAccuracy(s.c,s.t),n:s.t,section:s.section||'General'
+  })).sort((a,b)=>(a.acc??101)-(b.acc??101));
+
+  const weak=document.getElementById('anaWeakSkills');
+  if(weak){
+    weak.innerHTML=skills.length?skills.slice(0,8).map(s=>{
+      const pri=s.acc<55?'priority-high':s.acc<70?'priority-med':'priority-low';
+      const label=s.acc<55?'HIGH':s.acc<70?'MEDIUM':'LOW';
+      return `<div class="skill-row">
+        <div><b>${s.skill}</b><div class="skill-bar"><div style="width:${s.acc||0}%"></div></div></div>
+        <div>${s.acc??0}% <small>(${s.n} q)</small></div>
+        <div class="${pri}">${label}</div>
+      </div>`
+    }).join(''):'Complete more questions to build a diagnostic profile.';
+  }
+
+  const order=['Easy','Medium','Hard','Very Hard'];
+  const diff=document.getElementById('anaDifficulty');
+  if(diff){
+    diff.innerHTML=order.map(k=>{
+      const s=diffStats[k];const a=s?btAccuracy(s.c,s.t):null;
+      return `<div class="skill-row"><div><b>${k}</b><div class="skill-bar"><div style="width:${a||0}%"></div></div></div><div>${a===null?'--':a+'%'}</div><div>${s?s.t:0} q</div></div>`
+    }).join('');
+  }
+
+  const trend=document.getElementById('anaTrend');
+  if(trend){
+    const rows=hist.slice(0,8).map(h=>{
+      const q=btAccuracy(h.quant?.c||0,h.quant?.t||0);
+      const v=btAccuracy(h.verbal?.c||0,h.verbal?.t||0);
+      return `<div class="resultRow"><span>${new Date(h.ts).toLocaleDateString()} · ${h.name}</span><b>Q ${q===null?'--':btApproxScore(q)} · V ${v===null?'--':btApproxScore(v)}</b></div>`
+    });
+    trend.innerHTML=rows.length?rows.join(''):'No completed score history yet.';
+  }
+
+  const focus=document.getElementById('anaFocus');
+  if(focus){
+    const targets=skills.slice(0,5);
+    focus.innerHTML=targets.length?targets.map((s,i)=>`<div class="resultRow"><span>${i+1}. ${s.skill}</span><b>${s.acc}%</b></div>`).join(''):'Complete a timed or adaptive test to generate recommendations.';
+  }
+
+  const diag=document.getElementById('anaDiagnostic');
+  if(diag){
+    if(hist.length<3){
+      diag.innerHTML=`<b>330+ diagnostic:</b> complete ${3-hist.length} more timed/adaptive session${3-hist.length===1?'':'s'} for a more stable recommendation.`;
+    }else{
+      const total=(qa===null?0:btApproxScore(qa))+(va===null?0:btApproxScore(va));
+      let msg='';
+      if(total>=330) msg='Current practice estimate is in the 330+ range. Focus on consistency under time pressure and Very Hard questions.';
+      else if(total>=320) msg='You are within striking distance of 330. Prioritize the bottom 3 skills and Hard/Very Hard accuracy.';
+      else msg='Build accuracy first. Raise Medium difficulty performance above 80% before emphasizing Very Hard volume.';
+      diag.innerHTML=`<b>330+ diagnostic:</b> ${msg}`;
+    }
+  }
+}
+
+// Hook existing submit flow to record analytics.
+if(typeof submitExam==='function'){
+  const __btV24Submit=submitExam;
+  submitExam=function(auto){
+    btRecordAnalyticsFromState();
+    const r=__btV24Submit.apply(this,arguments);
+    setTimeout(renderAdvancedAnalytics,50);
+    return r;
+  }
+}
+window.addEventListener('load',()=>setTimeout(renderAdvancedAnalytics,200));
+</script>
+
+
+<script id="baum-v25-plan-js">
+let BT_CURRENT_PLAN=null;
+function btPlanKey(){
+  try{const u=JSON.parse(localStorage.getItem('baumGreCurrentUser')||'null');return 'baumStudyPlan:'+(u?.email||'student').toLowerCase()}
+  catch(e){return 'baumStudyPlan'}
+}
+function btPlanWeakSkills(){
+  try{
+    const key=typeof btUserStoreKey==='function'?btUserStoreKey('baumSkillStats'):'baumSkillStats';
+    const s=JSON.parse(localStorage.getItem(key)||'{}');
+    return Object.entries(s).map(([skill,v])=>({skill,acc:v.t?Math.round(100*v.c/v.t):100,section:v.section||''}))
+      .sort((a,b)=>a.acc-b.acc).slice(0,5);
+  }catch(e){return []}
+}
+function generateStudyPlan(){
+  const dateVal=document.getElementById('planDate').value;
+  const current=+document.getElementById('planCurrent').value||300;
+  const target=+document.getElementById('planTarget').value||330;
+  const hours=+document.getElementById('planHours').value||10;
+  const today=new Date(); today.setHours(0,0,0,0);
+  let testDate=dateVal?new Date(dateVal+'T00:00:00'):new Date(today.getTime()+84*86400000);
+  if(testDate<=today)testDate=new Date(today.getTime()+28*86400000);
+  const days=Math.max(7,Math.ceil((testDate-today)/86400000));
+  const weeks=Math.max(1,Math.ceil(days/7));
+  const gap=Math.max(0,target-current);
+  const weak=btPlanWeakSkills();
+  const weakNames=weak.length?weak.map(x=>x.skill):['Algebra','Reading Comprehension','Text Completion','Data Analysis'];
+  const phases=[];
+  const phase1=Math.max(1,Math.round(weeks*.35)), phase2=Math.max(1,Math.round(weeks*.4));
+  for(let w=1;w<=weeks;w++){
+    let phase,focus,mocks;
+    if(w<=phase1){phase='Foundation & Accuracy';focus=weakNames.slice(0,3);mocks='1 timed section'}
+    else if(w<=phase1+phase2){phase='Hard-Question Development';focus=weakNames.slice(0,4);mocks='2 timed/adaptive sections'}
+    else{phase='Test Simulation & Refinement';focus=weakNames.slice(0,2);mocks='1 full simulation + 2 timed sections'}
+    const qhrs=Math.round(hours*.48*10)/10, vhrs=Math.round(hours*.42*10)/10, review=Math.max(.5,Math.round(hours*.10*10)/10);
+    phases.push({week:w,phase,focus,mocks,qhrs,vhrs,review});
+  }
+  BT_CURRENT_PLAN={created:Date.now(),testDate:testDate.toISOString(),current,target,hours,weeks,gap,weak,phases};
+  renderStudyPlan(BT_CURRENT_PLAN);
+}
+function renderStudyPlan(p){
+  const out=document.getElementById('planOutput'); if(!out||!p)return;
+  const weak=p.weak.length?p.weak.map(x=>`${x.skill} (${x.acc}%)`).join(', '):'Insufficient history — plan starts with broad diagnostic coverage';
+  out.innerHTML=`
+    <div class="plan-summary">
+      <div class="plan-kpi"><small>Preparation window</small><strong>${p.weeks} weeks</strong></div>
+      <div class="plan-kpi"><small>Score gap</small><strong>${p.gap} pts</strong></div>
+      <div class="plan-kpi"><small>Weekly study</small><strong>${p.hours} hrs</strong></div>
+      <div class="plan-kpi"><small>Target</small><strong>${p.target}</strong></div>
+    </div>
+    <div class="diagnostic-callout"><b>Priority weaknesses:</b> ${weak}</div>
+    ${p.phases.map(w=>`<div class="week-card">
+      <h4>Week ${w.week} — ${w.phase}</h4>
+      <div class="plan-focus"><b>Priority:</b> ${w.focus.join(' · ')}</div>
+      <span class="day-chip">Quant ${w.qhrs}h</span>
+      <span class="day-chip">Verbal ${w.vhrs}h</span>
+      <span class="day-chip">Error review ${w.review}h</span>
+      <span class="day-chip">${w.mocks}</span>
+    </div>`).join('')}
+    <p class="muted" style="font-size:11px;margin-top:10px">The target is a study objective, not a guaranteed GRE result. Update the plan after each major diagnostic test.</p>`;
+}
+function saveStudyPlan(){
+  if(!BT_CURRENT_PLAN){generateStudyPlan()}
+  try{localStorage.setItem(btPlanKey(),JSON.stringify(BT_CURRENT_PLAN));alert('Personalized study plan saved for this student.')}catch(e){}
+}
+window.addEventListener('load',()=>{
+  const d=new Date(Date.now()+84*86400000); const el=document.getElementById('planDate');
+  if(el&&!el.value)el.value=d.toISOString().slice(0,10);
+  try{const p=JSON.parse(localStorage.getItem(btPlanKey())||'null');if(p){BT_CURRENT_PLAN=p;renderStudyPlan(p)}}catch(e){}
+});
+</script>
+
+
+<script id="baum-v26-cloud-js">
+const BT_CLOUD={
+  endpoint:(window.BAUM_CLOUD_ENDPOINT||'').trim(),
+  enabled:false,
+  queueKey:'baumCloudSyncQueue'
+};
+function btCloudUser(){
+  try{return JSON.parse(localStorage.getItem('baumGreCurrentUser')||'null')}catch(e){return null}
+}
+function btCloudBundle(){
+  const u=btCloudUser();
+  if(!u)return null;
+  const email=String(u.email||'').toLowerCase();
+  const get=(k)=>{
+    const keys=[`${k}:${email}`,k];
+    for(const x of keys){const v=localStorage.getItem(x);if(v!==null){try{return JSON.parse(v)}catch(e){return v}}}
+    return null;
+  };
+  return {
+    schema:'baum-gre-student-v1',
+    exportedAt:new Date().toISOString(),
+    user:{name:u.name||'',email},
+    analytics:get('baumAnalyticsHistory'),
+    skillStats:get('baumSkillStats'),
+    difficultyStats:get('baumDifficultyStats'),
+    studyPlan:get('baumStudyPlan'),
+    sessions:get('gre330sessions'),
+    profile:get('gre330profile'),
+    weak:get('gre330weak')
+  };
+}
+function exportStudentProfile(){
+  const bundle=btCloudBundle();
+  if(!bundle){alert('Please sign in first.');return}
+  const blob=new Blob([JSON.stringify(bundle,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`BAUM_GRE_${(bundle.user.email||'student').replace(/[^a-z0-9]/gi,'_')}_progress.json`;
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),500);
+}
+function btUpdateCloudStatus(){
+  const dot=document.getElementById('cloudDot'),txt=document.getElementById('cloudStatusText');
+  if(!dot||!txt)return;
+  if(!navigator.onLine){dot.className='cloud-dot offline';txt.textContent='Offline — progress saved on this device';return}
+  if(BT_CLOUD.endpoint){dot.className='cloud-dot online';txt.textContent='Online — cloud endpoint configured';}
+  else{dot.className='cloud-dot';txt.textContent='Online — cloud backend not connected yet';}
+}
+async function btCloudSync(){
+  if(!BT_CLOUD.endpoint||!navigator.onLine)return false;
+  const bundle=btCloudBundle();if(!bundle)return false;
+  try{
+    const res=await fetch(BT_CLOUD.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(bundle)});
+    if(!res.ok)throw new Error('sync failed');
+    localStorage.setItem('baumLastCloudSync',new Date().toISOString());
+    btUpdateCloudStatus();return true;
+  }catch(e){return false}
+}
+window.addEventListener('online',()=>{btUpdateCloudStatus();btCloudSync()});
+window.addEventListener('offline',btUpdateCloudStatus);
+window.addEventListener('load',()=>{btUpdateCloudStatus();setTimeout(btCloudSync,1000)});
+</script>
+
+
+<script id="baum-v27-server-bank-js">
+const BT_SERVER_BANK={
+  endpoint:(window.BAUM_QUESTION_API||'').trim(),
+  token:()=>{try{return localStorage.getItem('baumAuthToken')||''}catch(e){return ''}},
+  live:false
+};
+async function btFetchQuestionSet({section='Mixed',count=20,format='practice'}={}){
+  if(!BT_SERVER_BANK.endpoint) return null;
+  try{
+    const r=await fetch(BT_SERVER_BANK.endpoint.replace(/\/$/,'')+'/questions/session',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        ...(BT_SERVER_BANK.token()?{'Authorization':'Bearer '+BT_SERVER_BANK.token()}:{})
+      },
+      body:JSON.stringify({section,count,format})
+    });
+    if(!r.ok) throw new Error('Question API '+r.status);
+    const data=await r.json();
+    if(!data || !Array.isArray(data.questions)) throw new Error('Invalid question payload');
+    BT_SERVER_BANK.live=true; btRenderBankMode();
+    return data.questions;
+  }catch(e){
+    console.warn('Server question delivery unavailable; protected fallback retained.',e);
+    BT_SERVER_BANK.live=false; btRenderBankMode();
+    return null;
+  }
+}
+function btRenderBankMode(){
+  const d=document.getElementById('bankModeDot'),t=document.getElementById('bankModeText');
+  if(!d||!t)return;
+  if(BT_SERVER_BANK.live || BT_SERVER_BANK.endpoint){
+    d.className='bank-dot live';
+    t.textContent=BT_SERVER_BANK.live?'Server question delivery active':'Server endpoint configured — awaiting authenticated session';
+  }else{
+    d.className='bank-dot';
+    t.textContent='Protected local fallback active';
+  }
+}
+window.addEventListener('load',btRenderBankMode);
 </script>
 
 </body>

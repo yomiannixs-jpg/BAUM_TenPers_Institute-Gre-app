@@ -1,4 +1,4 @@
-const CACHE='baum-gre-v2-3-adaptive';
+const CACHE='baum-gre-v2-7-server-bank';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./share.html'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
 self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));

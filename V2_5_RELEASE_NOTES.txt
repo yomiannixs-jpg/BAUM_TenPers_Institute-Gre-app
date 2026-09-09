@@ -1,0 +1,23 @@
+BAUM TenPers GRE 330+ v2.5 Personalized
+
+Added:
+- Personalized GRE study-plan generator
+- GRE test-date input
+- Current score and target score inputs
+- Weekly study-hour selection
+- Automatic preparation-window calculation
+- Score-gap calculation
+- Uses stored weakness analytics to rank study priorities
+- Foundation, hard-question development, and test-simulation phases
+- Weekly Quant / Verbal / error-review allocations
+- Timed-section and mock-test cadence
+- Per-student saved study plan
+- 330+ target workflow
+
+Retained:
+- 5,000-question bank
+- Adaptive testing and diagnostic score engine
+- V2.4 weakness analytics
+- Quant / Verbal / combined test selector
+- Encryption and anti-copy controls
+- Browser/PWA installation

@@ -1,0 +1,15 @@
+BAUM TenPers GRE 330+ v2.7 — Server-Side Question Bank Ready
+
+Added:
+- Server question-delivery adapter
+- Authenticated question-session API contract
+- Server-side grading contract
+- Database schema for protected GRE questions and test sessions
+- Explicit separation of prompts from answer keys/explanations
+- Production status indicator
+- Offline/protected encrypted fallback retained
+
+Security architecture:
+The strongest production configuration stores the master question bank on the server and sends only the questions required for an authenticated session. Correct answers should not be returned until submission.
+
+Activation still requires deploying the backend/API and setting BAUM_QUESTION_API in the production environment. No secret/service-role credentials are embedded in this static build.

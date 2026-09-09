@@ -1,0 +1,24 @@
+BAUM TenPers GRE v2.6 — Cloud Account Foundation
+
+This build prepares the app for true cross-device student accounts while preserving the current local/offline account system.
+
+Included now:
+- online/offline sync status
+- portable student progress bundle
+- export of student history, analytics, weaknesses and study plan
+- cloud synchronization adapter
+- Supabase/Postgres-ready schema
+- offline-first fallback
+- existing adaptive testing, analytics, study planning, encrypted bank and PWA retained
+
+IMPORTANT:
+A real production cloud login cannot be safely hard-coded into a downloadable static ZIP. To activate cross-device accounts, create the backend project and supply its public client configuration / authenticated API endpoint in the deployed environment. Never place a Supabase service-role key or database admin secret in index.html or GitHub.
+
+Recommended next activation:
+1. Create Supabase project.
+2. Enable Email authentication.
+3. Run SUPABASE_SCHEMA.sql.
+4. Add row-level security policies tied to auth.uid().
+5. Configure the public anon/client key through deployment environment variables.
+6. Replace the MVP local login calls with Supabase Auth signUp/signInWithPassword/signOut.
+7. Sync the student's payload to student_progress under the authenticated user_id.

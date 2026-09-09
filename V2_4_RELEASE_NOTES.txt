@@ -1,0 +1,15 @@
+BAUM TenPers GRE 330+ v2.4 Analytics
+
+Added:
+- Separate Quant and Verbal accuracy analytics
+- Estimated 130–170 section scores
+- Weakest-skill ranking
+- High / Medium / Low study priority labels
+- Difficulty-band analytics: Easy, Medium, Hard, Very Hard
+- Recent score trend
+- Recommended focus list
+- 330+ readiness diagnostic
+- Per-student analytics persistence
+- Existing adaptive testing, encryption, anti-copy controls, 5,000-question bank and PWA installation retained
+
+Score estimates remain BAUM practice estimates, not official ETS scores.
