@@ -1,0 +1,31 @@
+BAUM TenPers GRE — Cloud / Server Deployment
+
+FRONTEND ROUTES
+index.html          Main application dashboard
+student.html        Student Dashboard
+institution.html    Institutional Platform
+security.html       Question Delivery Security
+account.html        Cloud Account
+test.html           Test Center
+cbt.html            Timed CBT
+practice.html       Untimed Practice
+simulation.html     Full GRE Simulation
+
+SUPABASE
+1. Create a Supabase project.
+2. Install Supabase CLI.
+3. Run: supabase login
+4. Run: supabase link --project-ref YOUR_PROJECT_REF
+5. Run: supabase db push
+6. Deploy functions:
+   supabase functions deploy question-session
+   supabase functions deploy submit-test
+   supabase functions deploy student-dashboard
+   supabase functions deploy institution-dashboard
+7. Put the project URL and publishable key in the frontend environment/config.
+8. Never put a service-role/secret key in browser code.
+9. Import the 5,000-question bank into gre_questions before switching production delivery from the encrypted local fallback to server delivery.
+10. Test student, instructor and admin accounts before disabling the local fallback.
+
+VERCEL
+Push this entire build to the existing GitHub main branch. Vercel will redeploy the frontend.
