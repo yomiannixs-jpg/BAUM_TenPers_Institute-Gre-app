@@ -1,0 +1,164 @@
+[
+  {
+    "file": "index.html",
+    "checks": {
+      "cipher_removed": true,
+      "no_fallback_wording": true,
+      "cloud_5000": true,
+      "protected_block_once": true,
+      "supabase_config_once": true,
+      "html_balanced": true,
+      "body_balanced": true,
+      "script_balanced": true,
+      "style_balanced": true,
+      "no_duplicate_ids": true,
+      "js_syntax": true
+    },
+    "duplicate_ids": [],
+    "syntax_errors": []
+  },
+  {
+    "file": "account.html",
+    "checks": {
+      "cipher_removed": true,
+      "no_fallback_wording": true,
+      "cloud_5000": true,
+      "protected_block_once": true,
+      "supabase_config_once": true,
+      "html_balanced": true,
+      "body_balanced": true,
+      "script_balanced": true,
+      "style_balanced": true,
+      "no_duplicate_ids": true,
+      "js_syntax": true
+    },
+    "duplicate_ids": [],
+    "syntax_errors": []
+  },
+  {
+    "file": "cbt.html",
+    "checks": {
+      "cipher_removed": true,
+      "no_fallback_wording": true,
+      "cloud_5000": true,
+      "protected_block_once": true,
+      "supabase_config_once": true,
+      "html_balanced": true,
+      "body_balanced": true,
+      "script_balanced": true,
+      "style_balanced": true,
+      "no_duplicate_ids": true,
+      "js_syntax": true
+    },
+    "duplicate_ids": [],
+    "syntax_errors": []
+  },
+  {
+    "file": "institution.html",
+    "checks": {
+      "cipher_removed": true,
+      "no_fallback_wording": true,
+      "cloud_5000": true,
+      "protected_block_once": true,
+      "supabase_config_once": true,
+      "html_balanced": true,
+      "body_balanced": true,
+      "script_balanced": true,
+      "style_balanced": true,
+      "no_duplicate_ids": true,
+      "js_syntax": true
+    },
+    "duplicate_ids": [],
+    "syntax_errors": []
+  },
+  {
+    "file": "practice.html",
+    "checks": {
+      "cipher_removed": true,
+      "no_fallback_wording": true,
+      "cloud_5000": true,
+      "protected_block_once": true,
+      "supabase_config_once": true,
+      "html_balanced": true,
+      "body_balanced": true,
+      "script_balanced": true,
+      "style_balanced": true,
+      "no_duplicate_ids": true,
+      "js_syntax": true
+    },
+    "duplicate_ids": [],
+    "syntax_errors": []
+  },
+  {
+    "file": "security.html",
+    "checks": {
+      "cipher_removed": true,
+      "no_fallback_wording": true,
+      "cloud_5000": true,
+      "protected_block_once": true,
+      "supabase_config_once": true,
+      "html_balanced": true,
+      "body_balanced": true,
+      "script_balanced": true,
+      "style_balanced": true,
+      "no_duplicate_ids": true,
+      "js_syntax": true
+    },
+    "duplicate_ids": [],
+    "syntax_errors": []
+  },
+  {
+    "file": "simulation.html",
+    "checks": {
+      "cipher_removed": true,
+      "no_fallback_wording": true,
+      "cloud_5000": true,
+      "protected_block_once": true,
+      "supabase_config_once": true,
+      "html_balanced": true,
+      "body_balanced": true,
+      "script_balanced": true,
+      "style_balanced": true,
+      "no_duplicate_ids": true,
+      "js_syntax": true
+    },
+    "duplicate_ids": [],
+    "syntax_errors": []
+  },
+  {
+    "file": "student.html",
+    "checks": {
+      "cipher_removed": true,
+      "no_fallback_wording": true,
+      "cloud_5000": true,
+      "protected_block_once": true,
+      "supabase_config_once": true,
+      "html_balanced": true,
+      "body_balanced": true,
+      "script_balanced": true,
+      "style_balanced": true,
+      "no_duplicate_ids": true,
+      "js_syntax": true
+    },
+    "duplicate_ids": [],
+    "syntax_errors": []
+  },
+  {
+    "file": "test.html",
+    "checks": {
+      "cipher_removed": true,
+      "no_fallback_wording": true,
+      "cloud_5000": true,
+      "protected_block_once": true,
+      "supabase_config_once": true,
+      "html_balanced": true,
+      "body_balanced": true,
+      "script_balanced": true,
+      "style_balanced": true,
+      "no_duplicate_ids": true,
+      "js_syntax": true
+    },
+    "duplicate_ids": [],
+    "syntax_errors": []
+  }
+]

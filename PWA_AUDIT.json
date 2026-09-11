@@ -1,0 +1,66 @@
+{
+  "pwa-register.js": {
+    "syntax_errors": 0,
+    "error": ""
+  },
+  "service-worker.js": {
+    "syntax_errors": 0,
+    "error": ""
+  },
+  "timed.html": {
+    "inline_script_blocks": 28,
+    "syntax_errors": 0
+  },
+  "practice.html": {
+    "inline_script_blocks": 28,
+    "syntax_errors": 0
+  },
+  "textbooks.html": {
+    "inline_script_blocks": 5,
+    "syntax_errors": 0
+  },
+  "simulation.html": {
+    "inline_script_blocks": 28,
+    "syntax_errors": 0
+  },
+  "account.html": {
+    "inline_script_blocks": 23,
+    "syntax_errors": 0
+  },
+  "institution.html": {
+    "inline_script_blocks": 23,
+    "syntax_errors": 0
+  },
+  "security.html": {
+    "inline_script_blocks": 23,
+    "syntax_errors": 0
+  },
+  "cbt.html": {
+    "inline_script_blocks": 28,
+    "syntax_errors": 0
+  },
+  "student.html": {
+    "inline_script_blocks": 24,
+    "syntax_errors": 0
+  },
+  "study.html": {
+    "inline_script_blocks": 9,
+    "syntax_errors": 0
+  },
+  "navigation.html": {
+    "inline_script_blocks": 5,
+    "syntax_errors": 0
+  },
+  "test.html": {
+    "inline_script_blocks": 28,
+    "syntax_errors": 0
+  },
+  "index.html": {
+    "inline_script_blocks": 5,
+    "syntax_errors": 0
+  },
+  "pwa-diagnostics.html": {
+    "inline_script_blocks": 2,
+    "syntax_errors": 0
+  }
+}

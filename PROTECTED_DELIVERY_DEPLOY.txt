@@ -1,0 +1,34 @@
+BAUM TenPers GRE — Protected Question Delivery Upgrade
+
+WHAT THIS BUILD DOES
+- All 9 HTML pages now request questions through the authenticated Supabase question-session Edge Function.
+- The browser receives only id, section, skill, difficulty, prompt and choices before submission.
+- correct_answer and explanation are returned only after submit-test grades the authenticated session.
+- Existing local result/review/analytics code is reused after server grading.
+- The encrypted local bank remains as a TEMPORARY fallback while the live path is verified.
+
+IMPORTANT BACKEND FIXES INCLUDED
+1. question-session now uses the service-role client only inside the Edge Function to read gre_questions, because RLS intentionally gives students no direct SELECT policy on that table.
+2. Every delivered question is recorded in session_questions.
+3. submit-test verifies that the session belongs to the authenticated user and grades only questions actually assigned to that session. This prevents using the grading endpoint as an answer-key oracle for arbitrary question IDs.
+4. Multi-answer responses are normalized safely.
+5. test_sessions scores/duration and student_skill_stats are updated after grading.
+
+DEPLOY THE TWO UPDATED FUNCTIONS FROM THE PROJECT ROOT
+  npx supabase functions deploy question-session
+  npx supabase functions deploy submit-test
+
+Then replace the 9 HTML files in the site project with the HTML files from this package.
+Keep your existing supabase-config.js in the project root.
+
+VERIFY
+1. Sign in with the Supabase test user.
+2. Start a 5-question Quant practice set.
+3. In DevTools > Network, question-session should return HTTP 200 and a session_id.
+4. Confirm the question-session JSON has NO correct_answer and NO explanation fields.
+5. Answer and submit.
+6. submit-test should return HTTP 200 with graded results and explanations.
+7. The Question Delivery Security indicator should read "Protected server question delivery active" after a successful fetch.
+
+DO NOT DELETE THE LOCAL ENCRYPTED BANK YET.
+Once live fetch + grading are verified in production, make a subsequent production-hardening build that removes the local bank and its answer keys from the browser entirely.

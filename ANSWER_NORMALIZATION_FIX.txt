@@ -1,0 +1,13 @@
+BAUM TenPers GRE - Answer normalization fix
+
+Problem found in live integration test:
+The browser records selected choices as zero-based numeric indexes (A=0, B=1, ...), while CSV-to-JSONB imports can preserve answer keys as JSON strings ("0", "1", ...). The old grader compared their JSON encodings literally, so 1 and "1" were treated as different answers. The review UI also received a string and passed it to String.fromCharCode, producing a Greek-looking character instead of B.
+
+Fix:
+submit-test now canonicalizes numeric strings, numbers, and legacy A/B/C letter keys to zero-based numeric indexes before comparison. Arrays are canonicalized and sorted as well. The function returns the canonical answer to the frontend, so the existing review renderer receives the numeric format it expects.
+
+Deployment:
+npx supabase functions deploy submit-test
+
+No HTML edit is required for this fix.
+Start a NEW practice session after deployment; the previously submitted session is already completed and cannot be resubmitted.

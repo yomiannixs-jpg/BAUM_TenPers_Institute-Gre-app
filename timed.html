@@ -554,6 +554,9 @@ body{padding-left:var(--bt-side)!important}
 
 
 
+
+
+
 <div class="bt-exam-focus-alert">
   <div class="box">
     <h2>Return to the test</h2>
@@ -643,8 +646,9 @@ body{padding-left:var(--bt-side)!important}
     <label>Password<input id="authPassword" type="password" autocomplete="current-password" placeholder="Minimum 6 characters"></label>
     <button id="authSubmitBtn" class="btn" style="width:100%" onclick="submitAuth()">Login</button>
     <p id="authMessage" class="auth-note"></p>
-    <p class="auth-note">Your BAUM TenPers GRE account is securely authenticated through our cloud service and can be used across supported devices.
-   </p>
+    <p class="auth-note">
+  Your BAUM TenPers GRE account is securely authenticated through our cloud service and can be used across supported devices.
+</p>
   </div>
 </div>
 
@@ -936,8 +940,8 @@ body{padding-left:var(--bt-side)!important}
 
 <div id="routeTestHeader" class="route-test-header">
   <a href="index.html">← Back to Main Dashboard</a>
-  <h1 style="margin:12px 0 0">BAUM TenPers GRE App</h1>
-  <p id="routeTestSubtitle">Choose a test type and begin in a distraction-free test workspace.</p>
+  <h1 style="margin:12px 0 0">BAUM TenPers GRE Timed Test Center</h1>
+  <p id="routeTestSubtitle">Choose a timed Quant, Verbal, or combined test and begin in the dedicated timed workspace.</p>
 </div>
 
   <div class="card">
@@ -1336,6 +1340,7 @@ if('serviceWorker' in navigator && location.protocol.startsWith('http')){
   window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
 }
 </script>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

@@ -1,0 +1,20 @@
+BAUM TenPers GRE — Production Hardening
+
+What changed:
+- Removed embedded encrypted question-bank ciphertext and browser-held key shares from all 9 HTML pages.
+- Browser now carries only non-sensitive metadata stubs used by legacy launcher selection logic.
+- All real question text/choices are fetched from Supabase question-session after authentication.
+- No local question-content fallback exists: protected delivery failures fail closed with a clear message.
+- Server-side submit-test remains mandatory for grading.
+- Correct answers and explanations appear only after authenticated server grading.
+- Updated visible wording to 5,000-question secure cloud bank (2,500 Quant + 2,500 Verbal).
+- Updated header from Standalone Offline App to Secure Cloud GRE Platform.
+- Practice, timed, simulation and adaptive launchers continue to pass through the same central begin() protected-delivery interceptor.
+
+Deployment:
+1. Merge these HTML/config files into the master folder.
+2. Keep your existing manifest.webmanifest, service-worker.js, vercel.json and other project files.
+3. No Edge Function redeploy is required solely for these frontend hardening changes if the fixed submit-test and question-session currently deployed are identical to the included copies.
+4. Test locally via python -m http.server 8080.
+5. Test Practice, Timed CBT and Full Simulation.
+6. Push to GitHub main only after those live tests pass.

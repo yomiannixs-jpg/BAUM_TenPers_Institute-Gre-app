@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BAUM TenPers GRE — Performance Tracker</title>
+<link rel="manifest" href="/manifest.webmanifest"><link rel="stylesheet" href="auth-gate.css"><link rel="stylesheet" href="baum-shell.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="auth-gate.js" defer></script><script src="/pwa-register.js" defer></script><script src="baum-shell.js" defer></script>
+<style>
+:root{--p:#230078;--g:#ffc533;--ink:#160d38;--muted:#6a6480;--line:#e4def0;--bg:#f7f5fb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink)}
+.wrap{max-width:1200px;margin:auto;padding:28px}.hero{background:linear-gradient(135deg,#230078,#4c27a8);color:white;border-radius:22px;border-bottom:6px solid var(--g);padding:28px}
+.hero h1{margin:0 0 8px}.hero p{margin:0;color:#eee8ff}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}.card{background:white;border:1px solid var(--line);border-radius:17px;padding:18px}.card small{color:var(--muted);font-weight:800}.big{font-size:32px;font-weight:1000;color:#35108f;margin-top:5px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #eee8f4;padding:10px 0}.row:last-child{border-bottom:0}
+.bar{height:9px;background:#ede9f4;border-radius:99px;overflow:hidden;margin-top:5px}.bar>div{height:100%;background:linear-gradient(90deg,#230078,#ffc533)}
+@media(max-width:900px){.grid4{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}@media(max-width:600px){.grid4{grid-template-columns:1fr}}
+</style></head><body>
+<div class="wrap">
+<section class="hero"><h1>Performance Tracker</h1><p>Track Quant and Verbal accuracy, estimated scores, weak skills, difficulty performance and recent sessions.</p></section>
+<section class="grid4">
+<div class="card"><small>Quant Accuracy</small><div id="qacc" class="big">--</div></div>
+<div class="card"><small>Verbal Accuracy</small><div id="vacc" class="big">--</div></div>
+<div class="card"><small>Estimated Quant</small><div id="qscore" class="big">--</div></div>
+<div class="card"><small>Estimated Verbal</small><div id="vscore" class="big">--</div></div>
+</section>
+<section class="two">
+<div class="card"><h2>Weak Areas</h2><div id="weak">Complete more questions to build your profile.</div></div>
+<div class="card"><h2>Difficulty Performance</h2><div id="diff"></div></div>
+</section>
+<section class="card" style="margin-top:16px"><h2>Recent Activity</h2><div id="recent">No completed sessions yet.</div></section>
+</div>
+<script>
+function read(key,def){try{const u=JSON.parse(localStorage.getItem('baumGreCurrentUser')||'null');const e=String(u?.email||'').toLowerCase();return JSON.parse(localStorage.getItem(e?`${key}:${e}`:key)||localStorage.getItem(key)||JSON.stringify(def))}catch(_){return def}}
+const acc=(c,t)=>t?Math.round(100*c/t):null;const score=a=>a===null?null:Math.max(130,Math.min(170,Math.round(130+40*a/100)));
+function render(){const h=read('baumAnalyticsHistory',[]),s=read('baumSkillStats',{}),d=read('baumDifficultyStats',{});let qc=0,qt=0,vc=0,vt=0;h.forEach(x=>{qc+=x.quant?.c||0;qt+=x.quant?.t||0;vc+=x.verbal?.c||0;vt+=x.verbal?.t||0});const qa=acc(qc,qt),va=acc(vc,vt);qacc.textContent=qa===null?'--':qa+'%';vacc.textContent=va===null?'--':va+'%';qscore.textContent=qa===null?'--':score(qa);vscore.textContent=va===null?'--':score(va);
+const arr=Object.entries(s).map(([k,v])=>({k,a:acc(v.c,v.t),n:v.t||0})).sort((a,b)=>(a.a??101)-(b.a??101));weak.innerHTML=arr.length?arr.slice(0,8).map(x=>`<div class="row"><span>${x.k}</span><b>${x.a}% · ${x.n} q</b></div>`).join(''):'Complete more questions to build your profile.';
+diff.innerHTML=['Easy','Medium','Hard','Very Hard'].map(k=>{const x=d[k],a=x?acc(x.c,x.t):null;return `<div class="row"><span>${k}</span><b>${a===null?'--':a+'%'} · ${x?.t||0} q</b></div>`}).join('');
+recent.innerHTML=h.length?h.slice(0,12).map(x=>`<div class="row"><span>${new Date(x.ts).toLocaleString()} · ${x.name||'GRE session'}</span><b>Q ${score(acc(x.quant?.c||0,x.quant?.t||0))||'--'} · V ${score(acc(x.verbal?.c||0,x.verbal?.t||0))||'--'}</b></div>`).join(''):'No completed sessions yet.'}
+window.addEventListener('DOMContentLoaded',render);
+</script></body></html>

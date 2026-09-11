@@ -1,0 +1,44 @@
+BAUM TenPers GRE — Protected Delivery Integration Audit
+
+HTML files audited: 9
+- account.html
+- cbt.html
+- index.html
+- institution.html
+- practice.html
+- security.html
+- simulation.html
+- student.html
+- test.html
+
+RESULTS
+- JavaScript syntax errors: 0 across all HTML files (Node --check on every inline script)
+- Duplicate HTML IDs: 0
+- Unbalanced <script> tags: 0
+- Unbalanced <style> tags: 0
+- Supabase JS CDN imports: exactly 1 per HTML file
+- supabase-config.js imports: exactly 1 per HTML file
+- Protected-delivery integration blocks: exactly 1 per HTML file
+
+SECURITY/INTEGRATION CHANGES
+- Authenticated Bearer access token is obtained from the active Supabase session.
+- question-session requests include Authorization Bearer token and publishable apikey.
+- Browser-side server questions are normalized without answer keys or explanations.
+- Sentence Equivalence is rendered as a multi-select question without revealing the correct selections.
+- All existing launchers are intercepted centrally through begin(), minimizing invasive edits.
+- Server-backed submissions are sent to submit-test for grading.
+- Answer keys/explanations are injected into the local review model only after authenticated grading returns.
+- Existing local result, review, analytics and history code is reused after server grading.
+- Encrypted local bank remains temporarily available as a fallback.
+
+BACKEND HARDENING
+- question-session authenticates the caller, then uses service role server-side to read gre_questions despite RLS blocking direct student SELECT.
+- question-session records the exact delivered questions in session_questions.
+- submit-test verifies session ownership and active status.
+- submit-test refuses question IDs that were not assigned to the session.
+- Multi-answer responses are normalized before comparison.
+- test_sessions stores duration and estimated scores.
+- student_skill_stats is updated after grading.
+
+IMPORTANT
+The encrypted local question bank is intentionally still present for temporary continuity. This means this build is not the final browser-exposure hardening state. Remove the local bank only after the live server path has been verified end-to-end in production.

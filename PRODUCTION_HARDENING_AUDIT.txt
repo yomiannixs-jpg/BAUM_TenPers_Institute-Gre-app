@@ -1,0 +1,110 @@
+BAUM TenPers GRE Production Hardening Audit
+
+index.html: PASS
+  cipher_removed: PASS
+  no_fallback_wording: PASS
+  cloud_5000: PASS
+  protected_block_once: PASS
+  supabase_config_once: PASS
+  html_balanced: PASS
+  body_balanced: PASS
+  script_balanced: PASS
+  style_balanced: PASS
+  no_duplicate_ids: PASS
+  js_syntax: PASS
+account.html: PASS
+  cipher_removed: PASS
+  no_fallback_wording: PASS
+  cloud_5000: PASS
+  protected_block_once: PASS
+  supabase_config_once: PASS
+  html_balanced: PASS
+  body_balanced: PASS
+  script_balanced: PASS
+  style_balanced: PASS
+  no_duplicate_ids: PASS
+  js_syntax: PASS
+cbt.html: PASS
+  cipher_removed: PASS
+  no_fallback_wording: PASS
+  cloud_5000: PASS
+  protected_block_once: PASS
+  supabase_config_once: PASS
+  html_balanced: PASS
+  body_balanced: PASS
+  script_balanced: PASS
+  style_balanced: PASS
+  no_duplicate_ids: PASS
+  js_syntax: PASS
+institution.html: PASS
+  cipher_removed: PASS
+  no_fallback_wording: PASS
+  cloud_5000: PASS
+  protected_block_once: PASS
+  supabase_config_once: PASS
+  html_balanced: PASS
+  body_balanced: PASS
+  script_balanced: PASS
+  style_balanced: PASS
+  no_duplicate_ids: PASS
+  js_syntax: PASS
+practice.html: PASS
+  cipher_removed: PASS
+  no_fallback_wording: PASS
+  cloud_5000: PASS
+  protected_block_once: PASS
+  supabase_config_once: PASS
+  html_balanced: PASS
+  body_balanced: PASS
+  script_balanced: PASS
+  style_balanced: PASS
+  no_duplicate_ids: PASS
+  js_syntax: PASS
+security.html: PASS
+  cipher_removed: PASS
+  no_fallback_wording: PASS
+  cloud_5000: PASS
+  protected_block_once: PASS
+  supabase_config_once: PASS
+  html_balanced: PASS
+  body_balanced: PASS
+  script_balanced: PASS
+  style_balanced: PASS
+  no_duplicate_ids: PASS
+  js_syntax: PASS
+simulation.html: PASS
+  cipher_removed: PASS
+  no_fallback_wording: PASS
+  cloud_5000: PASS
+  protected_block_once: PASS
+  supabase_config_once: PASS
+  html_balanced: PASS
+  body_balanced: PASS
+  script_balanced: PASS
+  style_balanced: PASS
+  no_duplicate_ids: PASS
+  js_syntax: PASS
+student.html: PASS
+  cipher_removed: PASS
+  no_fallback_wording: PASS
+  cloud_5000: PASS
+  protected_block_once: PASS
+  supabase_config_once: PASS
+  html_balanced: PASS
+  body_balanced: PASS
+  script_balanced: PASS
+  style_balanced: PASS
+  no_duplicate_ids: PASS
+  js_syntax: PASS
+test.html: PASS
+  cipher_removed: PASS
+  no_fallback_wording: PASS
+  cloud_5000: PASS
+  protected_block_once: PASS
+  supabase_config_once: PASS
+  html_balanced: PASS
+  body_balanced: PASS
+  script_balanced: PASS
+  style_balanced: PASS
+  no_duplicate_ids: PASS
+  js_syntax: PASS

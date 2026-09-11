@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BAUM GRE PWA Diagnostics</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#230078">
+<script src="/pwa-register.js" defer></script>
+<style>body{font-family:Segoe UI,Arial;background:#f7f5fb;color:#160d38;padding:28px}.card{max-width:760px;margin:auto;background:white;border:1px solid #e2dcef;border-radius:18px;padding:22px}button{background:#230078;color:white;border:0;border-radius:10px;padding:11px 15px;font-weight:800;cursor:pointer}pre{background:#f2edff;padding:14px;border-radius:10px;white-space:pre-wrap}</style>
+</head><body><div class="card"><h1>PWA Installation Diagnostics</h1>
+<p>Use this page if Chrome does not show the install option.</p>
+<button onclick="check()">Check installation status</button>
+<button onclick="BAUM_PWA.install()">Install App</button>
+<pre id="out">Click “Check installation status”.</pre>
+<p><a href="/index.html">Back to app</a></p></div>
+<script>
+async function check(){
+ const sw = "serviceWorker" in navigator ? await navigator.serviceWorker.getRegistration("/") : null;
+ const m = await fetch("/manifest.webmanifest",{cache:"no-store"}).then(r=>({ok:r.ok,status:r.status})).catch(e=>({ok:false,error:String(e)}));
+ const st = await BAUM_PWA.status();
+ document.getElementById("out").textContent = JSON.stringify({
+   url:location.href,
+   secureContext:window.isSecureContext,
+   manifest:m,
+   serviceWorkerSupported:"serviceWorker" in navigator,
+   serviceWorkerRegistered:!!sw,
+   serviceWorkerScope:sw?.scope||null,
+   standalone:st.standalone,
+   installPromptReady:st.installPromptReady
+ },null,2);
+}
+</script></body></html>

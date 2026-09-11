@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+textbooks/*.pdf
+testmaterials/*.pdf
+downloads/
+supabase/.temp/
+__pycache__/
+*.pyc
+
+textbooks/**/*.pdf

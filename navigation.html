@@ -1,0 +1,96 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BAUM TenPers GRE Navigation Hub</title>
+<style>
+:root{--p:#230078;--g:#ffc533;--ink:#160d38;--soft:#f7f4fb;--line:#e4def0}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--soft);color:var(--ink);padding-left:248px}
+.hero{max-width:1180px;margin:22px auto;padding:0 20px}.hero>div{background:linear-gradient(135deg,#230078,#35108f);color:#fff;border-radius:24px;padding:28px;border-bottom:6px solid var(--g)}
+.grid{max-width:1180px;margin:auto;padding:0 20px 24px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}.card a{display:block;text-decoration:none;background:#f4efff;color:var(--p);padding:11px 12px;border-radius:10px;margin:8px 0;font-weight:800}.card a:hover{background:#ece3ff}
+@media(max-width:850px){body{padding-left:0}.grid{grid-template-columns:1fr}}
+</style>
+
+<style id="bt-layout-vnext">
+:root{--bt-side:248px}
+body{padding-left:var(--bt-side)!important}
+.bt-side{position:fixed;left:0;top:0;bottom:0;width:var(--bt-side);z-index:1100;background:linear-gradient(180deg,#230078,#35108f);border-right:4px solid #ffc533;color:#fff;padding:14px 11px;overflow:auto}
+.bt-side-brand{padding:8px 7px 14px;border-bottom:1px solid rgba(255,255,255,.16);margin-bottom:8px}.bt-side-brand b{display:block;font-size:15px}.bt-side-brand small{display:block;color:#f8dc82;font-size:10px;margin-top:4px}
+.bt-side a,.bt-side summary{display:block;color:white;text-decoration:none;padding:9px 10px;border-radius:9px;font-size:12.5px;font-weight:800;cursor:pointer}.bt-side a:hover,.bt-side summary:hover{background:rgba(255,255,255,.11)}.bt-side details a{padding-left:20px;font-size:11.5px;color:#eee8ff}.bt-side .bt-primary{background:#ffc533;color:#160d38}.bt-sep{height:1px;background:rgba(255,255,255,.16);margin:9px 0}
+.bt-side-toggle{display:none;position:fixed;left:8px;top:8px;z-index:1200;border:0;border-radius:9px;padding:9px 11px;background:#230078;color:white;font-weight:900}
+.top{left:var(--bt-side)!important;width:calc(100% - var(--bt-side))!important}
+.bt-subject-nav{display:none!important}
+@media(max-width:900px){body{padding-left:0!important}.bt-side{transform:translateX(-100%);transition:.2s}.bt-side-toggle{display:block}.top{left:0!important;width:100%!important;padding-left:52px!important}body.bt-side-open .bt-side{transform:translateX(0)}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<link rel="stylesheet" href="auth-gate.css">
+<script src="auth-gate.js" defer></script>
+<link rel="manifest" href="/manifest.webmanifest"/>
+<meta name="application-name" content="BAUM TenPers GRE 330+"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
+<script src="/pwa-register.js" defer></script>
+<link rel="stylesheet" href="baum-shell.css">
+<script src="baum-shell.js" defer></script>
+<style id="bt-old-sidebar-kill">
+#sidebarToggle,#sidebarBackdrop,#baumSidebar,.sidebar-toggle,.sidebar-backdrop,.baum-sidebar{display:none!important}
+</style>
+</head><body>
+<button class="bt-side-toggle" onclick="document.body.classList.toggle('bt-side-open')" aria-label="Open menu">☰</button>
+<aside class="bt-side">
+  <div class="bt-side-brand">
+    <b>BAUM TenPers GRE 330+</b>
+    <small>Study • Practice • Test</small>
+  </div>
+  <a class="bt-primary" href="index.html">Main App</a>
+  <a href="navigation.html">Navigation Hub</a>
+  <div class="bt-sep"></div>
+  <a href="study.html">Study Library</a><a href="textbooks.html">Offline Textbooks</a>
+  <details><summary>Testing</summary>
+    <a href="practice.html">Untimed Practice</a>
+    <a href="test.html?mode=timed">Timed Test</a>
+    <a href="cbt.html">CBT Test</a>
+    <a href="simulation.html">Full Simulation</a>
+  </details>
+  <div class="bt-sep"></div>
+  <a href="student.html">Student Dashboard</a><a href="performance.html">Performance Tracker</a>
+  <a href="institution.html">Institutional Platform</a>
+  <a href="security.html">Question Security</a>
+  <a href="account.html">Cloud Account</a>
+</aside>
+
+<section class="hero"><div><h1 style="margin:0 0 8px">App Navigation Hub</h1><p style="margin:0;color:#e8e2f6">Move quickly between study, practice, testing, dashboards, and administration.</p></div></section>
+<div class="grid">
+ <div class="card"><h2>Study</h2><a href="study.html">Study Library</a><a href="textbooks.html">Offline Textbooks</a><p>Read textbook-style explanations by Quant and Verbal topic. No practice questions on this page.</p></div>
+ <div class="card"><h2>Testing</h2><a href="practice.html">Untimed Practice</a><a href="test.html?mode=timed">Timed Test</a><a href="cbt.html">CBT Test</a><a href="simulation.html">Full Simulation</a></div>
+ <div class="card"><h2>Student</h2><a href="student.html">Student Dashboard</a><a href="performance.html">Performance Tracker</a><p>Performance, weak areas, and recent activity.</p></div>
+ <div class="card"><h2>Platform</h2><a href="institution.html">Institutional Platform</a><a href="security.html">Question Security</a><a href="account.html">Cloud Account</a></div>
+</div>
+<style id="bt-home-logo-css">
+.bt-home-logo-link{display:inline-flex;align-items:center;text-decoration:none;color:inherit;cursor:pointer}
+.bt-home-logo-link:hover{filter:brightness(1.05)}
+</style>
+<script id="bt-home-logo-js">
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.baum-logo-shell').forEach(shell=>{
+    if(shell.closest('a')) return;
+    const a=document.createElement('a');
+    a.href='index.html';
+    a.className='bt-home-logo-link';
+    a.title='Return to BAUM TenPers GRE App';
+    a.setAttribute('aria-label','Return to BAUM TenPers GRE App');
+    shell.parentNode.insertBefore(a,shell);
+    a.appendChild(shell);
+  });
+  document.querySelectorAll('img[alt*="BAUM TenPers"]').forEach(img=>{
+    if(img.closest('a')) return;
+    const a=document.createElement('a');
+    a.href='index.html';
+    a.className='bt-home-logo-link';
+    a.title='Return to BAUM TenPers GRE App';
+    img.parentNode.insertBefore(a,img);
+    a.appendChild(img);
+  });
+});
+</script>
+
+</body></html>

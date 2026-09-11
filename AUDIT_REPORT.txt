@@ -1,0 +1,64 @@
+BAUM TenPers GRE HTML Code Audit — Fixed Build
+
+index.html: PASS
+  Supabase CDN/config/client: 1/1/1
+  Helper functions restored: True
+  Old/new auth note: 0/1
+  JS syntax errors: 0; duplicate IDs: 0
+  HTML/body/script/style balance: 1:1 / 1:1 / 20:20 / 17:17
+
+account.html: PASS
+  Supabase CDN/config/client: 1/1/1
+  Helper functions restored: True
+  Old/new auth note: 0/1
+  JS syntax errors: 0; duplicate IDs: 0
+  HTML/body/script/style balance: 1:1 / 1:1 / 20:20 / 17:17
+
+cbt.html: PASS
+  Supabase CDN/config/client: 1/1/1
+  Helper functions restored: True
+  Old/new auth note: 0/1
+  JS syntax errors: 0; duplicate IDs: 0
+  HTML/body/script/style balance: 1:1 / 1:1 / 20:20 / 17:17
+
+institution.html: PASS
+  Supabase CDN/config/client: 1/1/1
+  Helper functions restored: True
+  Old/new auth note: 0/1
+  JS syntax errors: 0; duplicate IDs: 0
+  HTML/body/script/style balance: 1:1 / 1:1 / 20:20 / 17:17
+
+practice.html: PASS
+  Supabase CDN/config/client: 1/1/1
+  Helper functions restored: True
+  Old/new auth note: 0/1
+  JS syntax errors: 0; duplicate IDs: 0
+  HTML/body/script/style balance: 1:1 / 1:1 / 20:20 / 17:17
+
+security.html: PASS
+  Supabase CDN/config/client: 1/1/1
+  Helper functions restored: True
+  Old/new auth note: 0/1
+  JS syntax errors: 0; duplicate IDs: 0
+  HTML/body/script/style balance: 1:1 / 1:1 / 20:20 / 17:17
+
+simulation.html: PASS
+  Supabase CDN/config/client: 1/1/1
+  Helper functions restored: True
+  Old/new auth note: 0/1
+  JS syntax errors: 0; duplicate IDs: 0
+  HTML/body/script/style balance: 1:1 / 1:1 / 20:20 / 17:17
+
+student.html: PASS
+  Supabase CDN/config/client: 1/1/1
+  Helper functions restored: True
+  Old/new auth note: 0/1
+  JS syntax errors: 0; duplicate IDs: 0
+  HTML/body/script/style balance: 1:1 / 1:1 / 20:20 / 17:17
+
+test.html: PASS
+  Supabase CDN/config/client: 1/1/1
+  Helper functions restored: True
+  Old/new auth note: 0/1
+  JS syntax errors: 0; duplicate IDs: 0
+  HTML/body/script/style balance: 1:1 / 1:1 / 20:20 / 17:17

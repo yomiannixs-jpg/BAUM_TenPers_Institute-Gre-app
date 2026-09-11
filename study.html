@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BAUM TenPers GRE Study Center</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<style>
+:root{--purple:#230078;--purple2:#35108f;--gold:#ffc533;--ink:#160d38;--soft:#f4efff;--line:#e4def0;--muted:#6a6480}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:#f7f4fb;color:var(--ink)}
+.top{min-height:72px;background:linear-gradient(90deg,var(--purple),var(--purple2));border-bottom:4px solid var(--gold);color:white;display:flex;align-items:center;justify-content:space-between;padding:10px 22px;gap:12px}
+.brand{font-weight:900;font-size:18px} .sub{font-size:11px;color:#f8dc82;margin-top:3px} .user{font-size:13px}
+.wrap{max-width:1180px;margin:auto;padding:22px} .card{background:white;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px;box-shadow:0 8px 28px rgba(35,0,120,.06)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px} h1,h2,h3{margin-top:0} .muted{color:var(--muted)}
+select,button{font:inherit} select{width:100%;padding:11px;border:1px solid #d9cfea;border-radius:10px;background:white}
+.btn{border:0;border-radius:11px;padding:11px 15px;background:var(--purple);color:white;font-weight:800;cursor:pointer} .btn.alt{background:var(--soft);color:var(--purple);border:1px solid #d9cfea}
+.lesson{display:grid;grid-template-columns:repeat(2,1fr);gap:12px} .lesson>div{background:#fbf9ff;border:1px solid #ebe4f4;border-radius:12px;padding:14px}
+.choice{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:12px;margin:10px 0;background:white;cursor:pointer} .choice.sel{border:2px solid var(--purple);background:#f8f4ff}
+.tag{display:inline-block;background:#efe8ff;color:var(--purple);padding:5px 9px;border-radius:999px;font-size:12px;font-weight:800;margin-right:6px}
+.qtext{font-size:18px;line-height:1.55;white-space:pre-wrap} .actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:18px}
+.review{border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0} .correct{background:#ecfdf5;border-color:#8fd6b8} .wrong{background:#fff1f2;border-color:#efb1ba}
+#drill,#results{display:none}
+@media(max-width:800px){.grid,.lesson{grid-template-columns:1fr}}
+</style>
+
+<style id="bt-subject-nav-css">
+.bt-subject-nav{position:sticky;top:72px;z-index:18;display:flex;gap:8px;align-items:center;padding:8px 22px;background:#fff;border-bottom:1px solid #e4def0;box-shadow:0 4px 14px rgba(35,0,120,.06)}
+.bt-nav-home,.bt-dropbtn{border:0;background:#f4efff;color:#230078;text-decoration:none;font-weight:800;border-radius:10px;padding:9px 12px;display:inline-block}
+.bt-dropdown{position:relative}
+.bt-dropdown-content{display:none;position:absolute;top:100%;left:0;min-width:270px;max-height:70vh;overflow:auto;background:white;border:1px solid #ddd4eb;border-radius:12px;box-shadow:0 16px 40px rgba(35,0,120,.18);padding:8px;z-index:40}
+.bt-dropdown-content.bt-mega{min-width:390px;columns:2;column-gap:8px}
+.bt-dropdown-content a{display:block;break-inside:avoid;padding:9px 10px;border-radius:8px;color:#230078;text-decoration:none;font-size:13px}
+.bt-dropdown-content a:hover{background:#f4efff}
+.bt-dropdown:hover .bt-dropdown-content,.bt-dropdown:focus-within .bt-dropdown-content{display:block}
+@media(max-width:760px){.bt-subject-nav{top:64px;overflow-x:auto;padding:7px 10px}.bt-dropdown-content.bt-mega{min-width:290px;columns:1}.bt-nav-home,.bt-dropbtn{white-space:nowrap}}
+</style>
+
+
+<style id="bt-minimal-shell-css">
+:root{--bt-side:260px}
+body{padding-left:var(--bt-side)}
+.bt-side{
+  position:fixed;left:0;top:0;bottom:0;width:var(--bt-side);z-index:80;
+  background:linear-gradient(180deg,#230078 0%,#35108f 100%);
+  color:#fff;padding:14px 12px;overflow-y:auto;border-right:4px solid #ffc533;
+  box-shadow:6px 0 24px rgba(35,0,120,.14)
+}
+.bt-side-brand{display:flex;align-items:center;gap:10px;padding:4px 4px 14px;border-bottom:1px solid rgba(255,255,255,.16);margin-bottom:12px}
+.bt-side-brand b{font-size:15px;line-height:1.15}.bt-side-brand small{display:block;color:#f8dc82;margin-top:3px;font-size:10px}
+.bt-side a,.bt-side summary{display:block;color:#fff;text-decoration:none;padding:9px 10px;border-radius:9px;font-weight:750;font-size:13px;cursor:pointer}
+.bt-side a:hover,.bt-side summary:hover{background:rgba(255,255,255,.11)}
+.bt-side details{margin:3px 0}.bt-side details a{padding-left:20px;font-size:12px;color:#f2ecff}
+.bt-side .bt-primary{background:#ffc533;color:#160d38;margin:8px 0;font-weight:900}
+.bt-side .bt-sep{height:1px;background:rgba(255,255,255,.15);margin:10px 0}
+.bt-side .bt-muted{color:#d8cef5;font-size:11px;padding:8px 10px;line-height:1.35}
+.bt-side-toggle{display:none;position:fixed;left:8px;top:8px;z-index:95;border:0;border-radius:10px;padding:9px 11px;background:#230078;color:#fff;font-weight:900}
+.bt-fullscreen-btn{width:100%;border:0;border-radius:10px;padding:10px 12px;background:#ffc533;color:#160d38;font-weight:900;cursor:pointer;margin-top:8px}
+.bt-exit-fullscreen{width:100%;border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:9px 12px;background:rgba(255,255,255,.08);color:#fff;font-weight:800;cursor:pointer;margin-top:6px}
+.bt-exam-focus-alert{
+ position:fixed;inset:0;z-index:20000;background:rgba(22,13,56,.96);color:#fff;
+ display:none;align-items:center;justify-content:center;text-align:center;padding:24px
+}
+.bt-exam-focus-alert .box{max-width:560px}.bt-exam-focus-alert h2{font-size:28px;margin-bottom:8px}
+.bt-exam-focus-alert button{border:0;border-radius:12px;padding:12px 16px;background:#ffc533;color:#160d38;font-weight:900;cursor:pointer}
+body.bt-focus-lost .bt-exam-focus-alert{display:flex}
+.top{left:var(--bt-side);width:calc(100% - var(--bt-side));padding-left:18px!important}
+.bt-subject-nav{display:none!important}
+@media(max-width:900px){
+ body{padding-left:0}
+ .bt-side{transform:translateX(-100%);transition:.22s ease}
+ body.bt-side-open .bt-side{transform:translateX(0)}
+ .bt-side-toggle{display:block}
+ .top{left:0;width:100%;padding-left:52px!important}
+}
+</style>
+
+
+<style id="bt-layout-vnext">
+:root{--bt-side:248px}
+body{padding-left:var(--bt-side)!important}
+.bt-side{position:fixed;left:0;top:0;bottom:0;width:var(--bt-side);z-index:1100;background:linear-gradient(180deg,#230078,#35108f);border-right:4px solid #ffc533;color:#fff;padding:14px 11px;overflow:auto}
+.bt-side-brand{padding:8px 7px 14px;border-bottom:1px solid rgba(255,255,255,.16);margin-bottom:8px}.bt-side-brand b{display:block;font-size:15px}.bt-side-brand small{display:block;color:#f8dc82;font-size:10px;margin-top:4px}
+.bt-side a,.bt-side summary{display:block;color:white;text-decoration:none;padding:9px 10px;border-radius:9px;font-size:12.5px;font-weight:800;cursor:pointer}.bt-side a:hover,.bt-side summary:hover{background:rgba(255,255,255,.11)}.bt-side details a{padding-left:20px;font-size:11.5px;color:#eee8ff}.bt-side .bt-primary{background:#ffc533;color:#160d38}.bt-sep{height:1px;background:rgba(255,255,255,.16);margin:9px 0}
+.bt-side-toggle{display:none;position:fixed;left:8px;top:8px;z-index:1200;border:0;border-radius:9px;padding:9px 11px;background:#230078;color:white;font-weight:900}
+.top{left:var(--bt-side)!important;width:calc(100% - var(--bt-side))!important}
+.bt-subject-nav{display:none!important}
+@media(max-width:900px){body{padding-left:0!important}.bt-side{transform:translateX(-100%);transition:.2s}.bt-side-toggle{display:block}.top{left:0!important;width:100%!important;padding-left:52px!important}body.bt-side-open .bt-side{transform:translateX(0)}}
+</style>
+<link rel="stylesheet" href="auth-gate.css">
+<script src="auth-gate.js" defer></script>
+<link rel="manifest" href="/manifest.webmanifest"/>
+<meta name="application-name" content="BAUM TenPers GRE 330+"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
+<script src="/pwa-register.js" defer></script>
+<link rel="stylesheet" href="baum-shell.css">
+<script src="baum-shell.js" defer></script>
+<style id="bt-old-sidebar-kill">
+#sidebarToggle,#sidebarBackdrop,#baumSidebar,.sidebar-toggle,.sidebar-backdrop,.baum-sidebar{display:none!important}
+</style>
+</head>
+<body>
+
+<button class="bt-side-toggle" onclick="document.body.classList.toggle('bt-side-open')" aria-label="Open menu">☰</button>
+<aside class="bt-side">
+  <div class="bt-side-brand">
+    <b>BAUM TenPers GRE 330+</b>
+    <small>Study • Practice • Test</small>
+  </div>
+  <a class="bt-primary" href="index.html">Main App</a>
+  <a href="navigation.html">Navigation Hub</a>
+  <div class="bt-sep"></div>
+  <a href="study.html">Study Library</a>
+  <details><summary>Testing</summary>
+    <a href="practice.html">Untimed Practice</a>
+    <a href="timed.html">Timed Test</a>
+    <a href="cbt.html">CBT Test</a>
+    <a href="simulation.html">Full Simulation</a>
+  </details>
+  <div class="bt-sep"></div>
+  <a href="student.html">Student Dashboard</a>
+  <a href="institution.html">Institutional Platform</a>
+  <a href="security.html">Question Security</a>
+  <a href="account.html">Cloud Account</a>
+</aside>
+
+
+
+<div class="bt-exam-focus-alert">
+  <div class="box">
+    <h2>Return to the test</h2>
+    <p>This testing session detected that the exam lost focus or left fullscreen.</p>
+    <button onclick="btResumeExam()">Resume in Fullscreen</button>
+  </div>
+</div>
+
+<div class="top"><div><div class="brand">BAUM TenPers GRE 330+ — Study Center</div><div class="sub">Textbook-style GRE study library</div></div><div class="user"><span id="studentName">Student</span> · <a href="index.html" style="color:#ffc533;font-weight:800">Dashboard</a></div></div>
+
+
+
+
+<div id="bt-offline-textbook-button" style="max-width:1180px;margin:14px auto;padding:0 20px">
+  <a href="textbooks.html" style="display:inline-flex;align-items:center;gap:8px;background:#ffc533;color:#160d38;text-decoration:none;font-weight:900;padding:12px 16px;border-radius:11px;box-shadow:0 6px 18px rgba(35,0,120,.10)">
+    📚 Open Offline GRE Textbook Library
+  </a>
+</div>
+<div class="wrap">
+<section id="setup">
+ <div class="card"><span class="tag">STUDY MODE</span><h1 style="margin-top:10px">Choose exactly what you want to study</h1><p class="muted">Read topic-by-topic textbook material with step-by-step explanations, methods, common traps, and worked mini-examples. This page contains no test practice.</p>
+ <div class="grid">
+  <div><label><b>Section</b></label><select id="section" onchange="fillTopics()"><option>Quant</option><option>Verbal</option></select></div>
+  <div><label><b>Topic</b></label><select id="topic" onchange="renderLesson()"></select></div>
+ </div></div>
+ <div id="lessonCard" class="card"></div>
+ 
+</section>
+
+</div>
+<script>
+const TOPICS={"Quant": [{"name": "Arithmetic & Order of Operations", "skills": ["Arithmetic - operations", "Arithmetic - order of operations"], "focus": "Evaluate expressions accurately, respect operation order, and translate verbal arithmetic into expressions.", "method": "Write the expression first; simplify grouped terms, powers, multiplication/division, then addition/subtraction.", "pitfall": "Doing addition before multiplication or losing a negative sign.", "example": "For 18 + 4×7, compute 4×7 first, then add 18."}, {"name": "Fractions & Decimals", "skills": ["Arithmetic - fractions and decimals"], "focus": "Convert, compare, simplify, and operate with fractions and decimals.", "method": "Use common denominators for addition/subtraction and reduce final fractions completely.", "pitfall": "Adding denominators or comparing fractions without a common basis.", "example": "3/4 + 1/6 = 9/12 + 2/12 = 11/12."}, {"name": "Percents & Percent Change", "skills": ["Arithmetic - percent change", "Percent change"], "focus": "Work with percentages, successive changes, markups, discounts, and percent change.", "method": "Percent change = (new−old)/old × 100%. Use multipliers such as 1.15 for a 15% increase.", "pitfall": "Dividing by the new value instead of the original value.", "example": "80 to 92 is a 12/80 = 15% increase."}, {"name": "Ratios & Proportions", "skills": ["Ratios and proportions"], "focus": "Use part-to-part and part-to-whole ratios, scale factors, and proportional relationships.", "method": "Translate the ratio into equal parts, or cross-multiply a proportion.", "pitfall": "Confusing a:b with a/(a+b).", "example": "If A:B=3:5 and total=40, A=3/8×40=15."}, {"name": "Number Properties", "skills": ["Number properties - GCF/LCM", "Number properties - factors", "Number properties - remainders"], "focus": "Factors, multiples, divisibility, GCF/LCM, parity, and remainders.", "method": "Prime-factorize when useful; for remainders write n=dq+r with 0≤r<d.", "pitfall": "Treating a remainder as unrestricted or confusing factor with multiple.", "example": "If n leaves remainder 2 on division by 5, n=5q+2."}, {"name": "Exponents & Roots", "skills": ["Arithmetic - exponents"], "focus": "Exponent laws, roots, powers, and equivalent exponential forms.", "method": "Use a^m·a^n=a^(m+n), a^m/a^n=a^(m−n), and (a^m)^n=a^(mn).", "pitfall": "Adding exponents when bases differ.", "example": "2^3·2^5=2^8."}, {"name": "Linear Equations", "skills": ["Algebra - linear equations"], "focus": "Solve one-variable linear equations and interpret linear relationships.", "method": "Undo operations in reverse order and preserve equality on both sides.", "pitfall": "Moving a term across the equals sign without changing its operation.", "example": "3x+7=25 ⇒ 3x=18 ⇒ x=6."}, {"name": "Inequalities & Absolute Value", "skills": ["Algebra - inequalities", "Algebra - inequalities and absolute values"], "focus": "Solve inequalities, interval restrictions, and absolute-value conditions.", "method": "Treat like an equation, but reverse the inequality when multiplying or dividing by a negative number.", "pitfall": "Forgetting to reverse the sign after dividing by a negative.", "example": "−2x>8 ⇒ x<−4."}, {"name": "Quadratics", "skills": ["Algebra - quadratics"], "focus": "Factor quadratics, use roots, and exploit sum/product relationships.", "method": "Try factoring first; otherwise use the quadratic formula or Vieta relationships.", "pitfall": "Dropping one root or mishandling the sign of the middle coefficient.", "example": "x²−7x+12=(x−3)(x−4), so roots are 3 and 4."}, {"name": "Systems of Equations", "skills": ["Algebra - systems of equations"], "focus": "Solve simultaneous linear equations and interpret intersections.", "method": "Use elimination when coefficients align; substitution when one variable is isolated easily.", "pitfall": "Solving only one equation and failing to verify the pair.", "example": "x+y=10 and x−y=2 ⇒ 2x=12 ⇒ x=6, y=4."}, {"name": "Functions, Formulas & Sequences", "skills": ["Functions", "Functions - transformations", "Algebra - functions formulas and sequences"], "focus": "Evaluate functions, understand transformations, formulas, and common sequence patterns.", "method": "Substitute carefully; for transformations track horizontal and vertical changes separately.", "pitfall": "Confusing f(x)+c with f(x+c).", "example": "If f(x)=2x−3, then f(5)=7."}, {"name": "Rates, Work & Speed", "skills": ["Rates and work", "Rates - average speed", "Word problems - rates and work"], "focus": "Distance-rate-time, work rates, combined rates, and average speed.", "method": "Use d=rt. For work, add rates: 1/T=1/t1+1/t2.", "pitfall": "Averaging speeds arithmetically when travel times differ.", "example": "Jobs taking 6 and 3 hours separately have combined rate 1/6+1/3=1/2 job/hour."}, {"name": "Probability & Combinatorics", "skills": ["Probability", "Counting and combinations", "Probability combinatorics and overlapping sets"], "focus": "Probability, counting rules, combinations, and dependent events.", "method": "Count favorable outcomes over total outcomes; multiply sequential conditional probabilities when appropriate.", "pitfall": "Using combinations when order matters or forgetting no-replacement dependence.", "example": "P(two red without replacement)=r/n × (r−1)/(n−1)."}, {"name": "Sets & Venn Diagrams", "skills": ["Sets and Venn diagrams", "Probability combinatorics and overlapping sets"], "focus": "Union, intersection, overlap, and inclusion-exclusion.", "method": "Use |A∪B|=|A|+|B|−|A∩B|.", "pitfall": "Double-counting the overlap.", "example": "20 like A, 15 like B, 5 like both ⇒ 30 like at least one."}, {"name": "Statistics: Center & Spread", "skills": ["Statistics - center and spread", "Statistics - mean median and mode"], "focus": "Mean, median, mode, range, and how data changes affect center.", "method": "Sort data before finding the median; mean=sum/count.", "pitfall": "Assuming mean and median react identically to outliers.", "example": "Adding a very large value usually raises the mean more than the median."}, {"name": "Standard Deviation & Distribution", "skills": ["Statistics - effect of an observation", "Statistics - standard deviation and distribution"], "focus": "Spread, standard deviation, outliers, and qualitative distribution comparisons.", "method": "Compare distance from the center; a wider spread around the same mean implies a larger standard deviation.", "pitfall": "Thinking a higher mean necessarily means a higher standard deviation.", "example": "{8,10,12} is less spread out than {2,10,18}."}, {"name": "Data Interpretation", "skills": ["Data interpretation - tables", "Data interpretation - percent comparison"], "focus": "Read tables efficiently, compare groups, compute changes, ratios, and percentages.", "method": "Identify the exact row/column first, then calculate only what the question asks.", "pitfall": "Using the wrong base period in percentage calculations.", "example": "From 120 to 150: increase=30; percent increase=30/120=25%."}, {"name": "Lines & Angles", "skills": ["Geometry - lines and angles"], "focus": "Parallel lines, transversals, vertical angles, supplementary angles, and angle chasing.", "method": "Mark known equal/supplementary relationships before calculating.", "pitfall": "Assuming lines are parallel when the diagram or statement does not say so.", "example": "A linear pair sums to 180°."}, {"name": "Triangles", "skills": ["Geometry - triangles"], "focus": "Triangle angle sum, special triangles, area, similarity, and Pythagorean relationships.", "method": "Use angle sum=180°; for right triangles test common triples and a²+b²=c².", "pitfall": "Applying Pythagoras to a non-right triangle.", "example": "A 3-4-5 triangle is right."}, {"name": "Circles & Cylinders", "skills": ["Geometry - circles", "Geometry - circles and cylinders"], "focus": "Radius, diameter, circumference, area, arcs/sectors, and cylinder volume.", "method": "Keep π symbolic unless an approximation is requested; C=2πr, A=πr², V=πr²h.", "pitfall": "Using diameter where radius is required.", "example": "Radius 4 ⇒ area 16π, circumference 8π."}, {"name": "Polygons & Solids", "skills": ["Geometry - polygons", "Geometry - solids", "Geometry - polygons and rectangular solids"], "focus": "Interior angles, perimeter/area, rectangular solids, and volume.", "method": "Polygon interior sum=(n−2)180°. For rectangular solids V=lwh.", "pitfall": "Confusing surface area with volume.", "example": "A hexagon has interior-angle sum 720°."}, {"name": "Coordinate Geometry", "skills": ["Coordinate geometry - distance", "Coordinate geometry - lines", "Coordinate geometry - midpoint", "Geometry - coordinate geometry"], "focus": "Slope, equations of lines, distance, midpoint, parallel/perpendicular lines.", "method": "Slope=(y2−y1)/(x2−x1); midpoint averages coordinates; distance uses the Pythagorean formula.", "pitfall": "Reversing only one coordinate difference in the slope formula.", "example": "Between (1,2) and (4,6), distance=5."}, {"name": "Quantitative Comparison", "skills": ["Quantitative comparison", "Quantitative comparison - mixed"], "focus": "Compare Quantity A and B efficiently without unnecessary full computation.", "method": "Simplify, test legal values, and look for sign or domain restrictions before choosing.", "pitfall": "Assuming one numerical test proves a universal relationship.", "example": "If the relationship changes for allowed values, choose 'cannot be determined'."}], "Verbal": [{"name": "Text Completion — One Blank", "skills": ["Text completion - single blank", "Text Completion - one blank"], "focus": "Use sentence logic and vocabulary to choose the word that completes one blank.", "method": "Predict the blank before looking at choices; identify contrast/support clues such as although, because, yet, therefore.", "pitfall": "Choosing a word that sounds sophisticated but violates the sentence logic.", "example": "Sparse evidence usually supports a word such as 'tenuous', not 'conclusive'."}, {"name": "Text Completion — Two Blanks", "skills": ["Text completion - double blank", "Text Completion - two blanks"], "focus": "Solve two linked blanks while preserving the logic of the whole sentence.", "method": "Treat each blank as a separate choice group; solve the better-constrained blank first, then check the pair together.", "pitfall": "Selecting two words from the same blank group.", "example": "A contrast may require '(i) implausible' but '(ii) corroborative'."}, {"name": "Text Completion — Three Blanks", "skills": ["Text Completion - three blanks"], "focus": "Track a longer chain of contrast, cause, concession, or progression across three blanks.", "method": "Map the sentence structure first; solve the most constrained blank, then verify all three choices create one coherent argument.", "pitfall": "Solving each blank independently without checking the full sentence.", "example": "Initial doubt → strong evidence → critics withdraw objections is a coherent progression."}, {"name": "Sentence Equivalence", "skills": ["Sentence equivalence", "Sentence Equivalence"], "focus": "Choose exactly two words that both fit the sentence and produce equivalent meanings.", "method": "Predict the missing meaning, then find two choices that are near-equivalent in context.", "pitfall": "Choosing two synonyms that do not fit the sentence, or two fitting words that create different meanings.", "example": "'Tenuous' and 'fragile' can both describe a weak conclusion."}, {"name": "Reading Comprehension — Mixed", "skills": ["Reading Comprehension", "Reading comprehension - main idea", "Reading comprehension - inference", "Reading comprehension - detail", "Reading comprehension - purpose", "Reading comprehension - strengthen", "Reading comprehension - weaken"], "focus": "Main idea, inference, detail, purpose, argument structure, strengthen, and weaken questions.", "method": "Read for structure: claim, evidence, contrast, limitation, conclusion. Return to the exact passage evidence for each answer.", "pitfall": "Choosing an answer that is plausible in general but unsupported by the passage.", "example": "For inference, choose what must or very likely follows—not what could merely be true."}, {"name": "RC — Main Idea", "skills": ["Reading comprehension - main idea"], "focus": "Identify what the passage as a whole is doing or arguing.", "method": "Summarize each paragraph in a few words, then state the passage's overall job in one sentence.", "pitfall": "Choosing a true detail instead of the central purpose.", "example": "A passage may present a finding while qualifying the inference drawn from it."}, {"name": "RC — Inference", "skills": ["Reading comprehension - inference"], "focus": "Determine what follows from the passage without going beyond its evidence.", "method": "Use conservative logic: the correct answer should be strongly supported by specific text.", "pitfall": "Turning a qualified claim into an absolute one.", "example": "If authors say evidence is suggestive, infer uncertainty—not proof."}, {"name": "RC — Detail", "skills": ["Reading comprehension - detail"], "focus": "Locate and interpret explicitly stated information.", "method": "Find the relevant sentence, then paraphrase it before checking choices.", "pitfall": "Relying on memory when answer choices differ by one qualifier.", "example": "Words such as 'some', 'often', and 'only' matter."}, {"name": "RC — Author Purpose", "skills": ["Reading comprehension - purpose"], "focus": "Explain why the author includes a sentence, example, contrast, or paragraph.", "method": "Ask what role the text plays: support, qualify, illustrate, contrast, define, or rebut.", "pitfall": "Restating content instead of identifying function.", "example": "A limitation may be included to qualify a causal interpretation."}, {"name": "RC — Strengthen", "skills": ["Reading comprehension - strengthen"], "focus": "Find new evidence that makes an argument more convincing.", "method": "Identify conclusion and gap; choose evidence that closes the gap or rules out an alternative.", "pitfall": "Choosing evidence merely consistent with the conclusion but irrelevant to the gap.", "example": "A controlled replication can strengthen a causal claim."}, {"name": "RC — Weaken", "skills": ["Reading comprehension - weaken"], "focus": "Find evidence that reduces support for an argument.", "method": "Attack the assumption, provide an alternative cause, or show the evidence is less reliable.", "pitfall": "Choosing a statement that criticizes the topic but not the reasoning.", "example": "Showing a confound independently produces the same pattern weakens a causal claim."}]};
+const SB=()=>window.supabase.createClient(window.BAUM_SUPABASE_URL,window.BAUM_SUPABASE_PUBLISHABLE_KEY);
+const supa=SB();
+let state={questions:[],answers:[],idx:0,sessionId:null,started:0,topic:null};
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function fillTopics(){
+ const sec=document.getElementById('section').value, sel=document.getElementById('topic'); sel.innerHTML='';
+ TOPICS[sec].forEach(t=>{const o=document.createElement('option');o.value=t.name;o.textContent=t.name;sel.appendChild(o)});
+ const q=new URLSearchParams(location.search); const wanted=q.get('topic'); if(wanted&&TOPICS[sec].some(t=>t.name===wanted))sel.value=wanted;
+ renderLesson();
+}
+function currentTopic(){const sec=document.getElementById('section').value;return TOPICS[sec].find(t=>t.name===document.getElementById('topic').value)}
+function renderLesson(){
+ const t=currentTopic(); if(!t)return;
+ document.getElementById('lessonCard').innerHTML=`<span class="tag">${esc(document.getElementById('section').value)}</span><h2 style="margin-top:10px">${esc(t.name)}</h2>
+ <div class="lesson"><div><b>Concept</b><p>${esc(t.focus)}</p></div><div><b>Step-by-step method</b><p>${esc(t.method)}</p></div><div><b>Common trap</b><p>${esc(t.pitfall)}</p></div><div><b>Worked mini-example</b><p>${esc(t.example)}</p></div></div>
+<div class="card" style="margin-top:14px"><h3>How to study this topic</h3><ol><li>Read the concept statement slowly.</li><li>Work through the method in the stated order.</li><li>Recreate the mini-example without looking.</li><li>Write down the common trap and how you will avoid it.</li><li>Move to a testing page only after you can explain the idea in your own words.</li></ol></div>`;
+}
+
+
+
+
+window.addEventListener('load',async()=>{const q=new URLSearchParams(location.search);if(q.get('section')==='Verbal')document.getElementById('section').value='Verbal';fillTopics();try{const {data:{session}}=await supa.auth.getSession();document.getElementById('studentName').textContent=session?.user?.email||'Student'}catch(e){}});
+</script>
+
+<script id="bt-minimal-shell-js">
+window.BT_EXAM_ACTIVE = false;
+async function btEnterFullscreen(){
+  try{
+    const el=document.documentElement;
+    if(!document.fullscreenElement && el.requestFullscreen) await el.requestFullscreen();
+  }catch(e){ console.warn("Fullscreen request was not permitted:",e); }
+}
+async function btExitFullscreen(){
+  try{ if(document.fullscreenElement && document.exitFullscreen) await document.exitFullscreen(); }catch(e){}
+}
+async function btResumeExam(){
+  document.body.classList.remove('bt-focus-lost');
+  await btEnterFullscreen();
+}
+function btSetExamActive(v){
+  window.BT_EXAM_ACTIVE=!!v;
+  if(v) btEnterFullscreen();
+}
+document.addEventListener('visibilitychange',()=>{
+  if(window.BT_EXAM_ACTIVE && document.hidden) document.body.classList.add('bt-focus-lost');
+});
+window.addEventListener('blur',()=>{
+  if(window.BT_EXAM_ACTIVE) setTimeout(()=>document.body.classList.add('bt-focus-lost'),150);
+});
+document.addEventListener('fullscreenchange',()=>{
+  if(window.BT_EXAM_ACTIVE && !document.fullscreenElement) document.body.classList.add('bt-focus-lost');
+});
+</script>
+
+
+<script id="bt-fullscreen-direct-start">
+(function(){
+  function isStartControl(el){
+    const t=(el?.textContent||'').trim().toLowerCase();
+    return /(start|begin|launch|timed cbt|full simulation|start practice|start test|start section)/.test(t);
+  }
+  async function directFullscreen(){
+    try{
+      if(!document.fullscreenElement && document.documentElement.requestFullscreen){
+        await document.documentElement.requestFullscreen({navigationUI:"hide"});
+      }
+    }catch(e){console.warn("Fullscreen denied",e)}
+  }
+  // pointerdown is a direct user gesture; do not defer with setTimeout.
+  document.addEventListener('pointerdown',function(e){
+    const c=e.target.closest('button,a');
+    if(c && isStartControl(c)) directFullscreen();
+  },true);
+})();
+</script>
+
+
+<script id="bt-requested-home-cleanup">
+(function(){
+  function closestCard(el){
+    return el.closest('.mvp-card,.mode,.card,section,.chrome-install-card,.baum-install-bar') || el.parentElement;
+  }
+  function removeExactText(text){
+    [...document.querySelectorAll('body *')].forEach(el=>{
+      if((el.children.length===0 || ['BUTTON','A','H1','H2','H3','P','SPAN','DIV'].includes(el.tagName)) &&
+         (el.textContent||'').trim()===text){
+        const c=closestCard(el); if(c) c.remove();
+      }
+    });
+  }
+  window.addEventListener('DOMContentLoaded',()=>{
+    // 1,2,3 -> sidebar only
+    ['Targeted Practice','CBT Section','Full Simulation'].forEach(label=>{
+      [...document.querySelectorAll('h1,h2,h3,strong,b,div,span')].forEach(el=>{
+        if((el.textContent||'').trim()===label){
+          const c=closestCard(el); if(c) c.remove();
+        }
+      });
+    });
+
+    // 4,5 -> Student Dashboard only
+    ['Weak Areas','Recent Activity'].forEach(label=>{
+      [...document.querySelectorAll('h1,h2,h3,strong,b,div,span')].forEach(el=>{
+        if((el.textContent||'').trim()===label){
+          const c=closestCard(el); if(c) c.remove();
+        }
+      });
+    });
+
+    // 6,7 -> permanently deleted
+    ['Install with Google Chrome','Chrome install help'].forEach(removeExactText);
+    document.querySelectorAll('.chrome-install-card,.baum-install-bar').forEach(el=>el.remove());
+  });
+})();
+</script>
+
+
+<style id="bt-home-logo-css">
+.bt-home-logo-link{display:inline-flex;align-items:center;text-decoration:none;color:inherit;cursor:pointer}
+.bt-home-logo-link:hover{filter:brightness(1.05)}
+</style>
+<script id="bt-home-logo-js">
+window.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.baum-logo-shell').forEach(shell=>{
+    if(shell.closest('a')) return;
+    const a=document.createElement('a');
+    a.href='index.html';
+    a.className='bt-home-logo-link';
+    a.title='Return to BAUM TenPers GRE App';
+    a.setAttribute('aria-label','Return to BAUM TenPers GRE App');
+    shell.parentNode.insertBefore(a,shell);
+    a.appendChild(shell);
+  });
+  document.querySelectorAll('img[alt*="BAUM TenPers"]').forEach(img=>{
+    if(img.closest('a')) return;
+    const a=document.createElement('a');
+    a.href='index.html';
+    a.className='bt-home-logo-link';
+    a.title='Return to BAUM TenPers GRE App';
+    img.parentNode.insertBefore(a,img);
+    a.appendChild(img);
+  });
+});
+</script>
+
+</body></html>
