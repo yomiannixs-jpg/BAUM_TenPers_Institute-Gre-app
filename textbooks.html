@@ -1,12 +1,246 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BAUM TenPers GRE — Textbook Library</title><link rel="stylesheet" href="auth-gate.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="auth-gate.js" defer></script><style>:root{--p:#230078;--p2:#35108f;--g:#ffc533;--ink:#160d38;--muted:#6a6480;--line:#e4def0;--bg:#f7f4fb}*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}.top{background:linear-gradient(90deg,var(--p),var(--p2));color:#fff;border-bottom:5px solid var(--g);padding:16px 22px;display:flex;justify-content:space-between;align-items:center}.top a{background:var(--g);color:var(--ink);text-decoration:none;padding:10px 14px;border-radius:10px;font-weight:900}.wrap{max-width:1140px;margin:auto;padding:24px}.hero,.book,.note{background:#fff;border:1px solid var(--line);border-radius:18px}.hero{padding:22px;margin-bottom:16px}.hero p,.book p,.note{color:var(--muted);line-height:1.5}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.book{padding:18px}.book h2{font-size:18px;color:var(--p);margin:0 0 8px}.open{display:inline-block;background:var(--p);color:#fff;text-decoration:none;font-weight:850;padding:10px 13px;border-radius:10px}.path{font-size:12px;color:#786f93;margin-top:10px;word-break:break-all}.note{padding:16px;margin-top:18px;border-left:5px solid var(--g)}@media(max-width:760px){.grid{grid-template-columns:1fr}}</style><link rel="manifest" href="/manifest.webmanifest"/>
-<meta name="application-name" content="BAUM TenPers GRE 330+"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
-<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BAUM TenPers GRE — Offline Textbook Library</title>
+<link rel="stylesheet" href="auth-gate.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="auth-gate.js" defer></script>
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="application-name" content="BAUM TenPers GRE 330+">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <script src="/pwa-register.js" defer></script>
 <link rel="stylesheet" href="baum-shell.css">
 <script src="baum-shell.js" defer></script>
 <style id="bt-old-sidebar-kill">
 #sidebarToggle,#sidebarBackdrop,#baumSidebar,.sidebar-toggle,.sidebar-backdrop,.baum-sidebar{display:none!important}
 </style>
-</head><body><div class="top"><b>BAUM TenPers GRE — Offline Textbook Library</b><a href="index.html">Home</a></div><div class="wrap"><section class="hero"><h1>GRE Preparatory Textbooks</h1><p>The library reads the PDF filenames that actually exist in your local <b>textbooks</b> folder. No guessed filenames and no temporary browser links.</p></section><section class="grid" id="grid"><article class="book"><h2>Loading textbooks…</h2></article></section><section class="note" id="note">For local/offline reading, start <code>python -m http.server 8080</code> from the master app folder.</section></div><script>const grid=document.getElementById('grid'),note=document.getElementById('note');function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}async function load(){try{const r=await fetch('textbooks/',{cache:'no-store'});if(!r.ok)throw new Error('The textbooks folder is not being served from this app root.');const html=await r.text();const doc=new DOMParser().parseFromString(html,'text/html');const links=[...doc.querySelectorAll('a[href]')].map(a=>a.getAttribute('href')).filter(h=>/\.pdf(?:$|[?#])/i.test(h)).filter((h,i,a)=>a.indexOf(h)===i);if(!links.length){grid.innerHTML='<article class="book"><h2>No PDF files found</h2><p>Put the PDF files directly inside the app\'s textbooks folder, then Ctrl+F5.</p></article>';return}grid.innerHTML=links.map(h=>{const decoded=decodeURIComponent(h.replace(/^\.\//,''));const title=decoded.replace(/\.pdf$/i,'').replace(/[_-]+/g,' ');return `<article class="book"><h2>${esc(title)}</h2><p>Local GRE preparation PDF</p><a class="open" href="textbooks/${encodeURI(decoded)}" target="_blank">Open PDF</a><div class="path">textbooks/${esc(decoded)}</div></article>`}).join('');note.innerHTML=`Found <b>${links.length}</b> PDF file(s) directly from the local textbooks folder.`}catch(e){grid.innerHTML=`<article class="book"><h2>Textbook folder unavailable</h2><p>${esc(e.message)}</p></article>`;note.innerHTML='<b>Fix:</b> start the Python server from the exact master folder that contains both <code>textbooks.html</code> and the <code>textbooks</code> folder.'}}load();</script></body></html>
+<style>
+:root{--p:#230078;--p2:#35108f;--g:#ffc533;--ink:#160d38;--muted:#6a6480;--line:#e4def0;--bg:#f7f4fb;--ok:#18794e;--danger:#b42318}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+.top{background:linear-gradient(90deg,var(--p),var(--p2));color:#fff;border-bottom:5px solid var(--g);padding:16px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.top a{background:var(--g);color:var(--ink);text-decoration:none;padding:10px 14px;border-radius:10px;font-weight:900}
+.wrap{max-width:1180px;margin:auto;padding:24px}
+.hero,.panel,.book,.note{background:#fff;border:1px solid var(--line);border-radius:18px}
+.hero{padding:24px;margin-bottom:18px}
+.hero h1{margin:0 0 8px;font-size:31px}.hero p{margin:0;color:var(--muted);line-height:1.6}
+.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.panel{padding:21px;min-height:230px}.panel h2{margin:0 0 9px;color:var(--p);font-size:21px}.panel p{color:var(--muted);line-height:1.55}
+.badge{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:850;background:#f2edff;color:var(--p);margin-bottom:12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.btn{border:0;border-radius:11px;padding:11px 14px;font:inherit;font-weight:850;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary{background:var(--p);color:#fff}.btn-gold{background:var(--g);color:var(--ink)}.btn-soft{background:#f1edf8;color:var(--p)}.btn-danger{background:#fff1f0;color:var(--danger);border:1px solid #ffd0cc}
+.small{font-size:12px;color:var(--muted);line-height:1.45}
+.library{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+.library-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}.library-head h2{margin:0;color:var(--p)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.search{min-width:260px;padding:11px 13px;border:1px solid var(--line);border-radius:10px;font:inherit;outline:none}.search:focus{border-color:#a48add;box-shadow:0 0 0 3px #eee8ff}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 16px}.stat{background:#f8f6fc;border:1px solid var(--line);border-radius:11px;padding:8px 11px;font-size:13px}.stat b{color:var(--p)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.book{padding:17px;display:flex;flex-direction:column;gap:7px;min-width:0}.book h3{font-size:17px;color:var(--p);margin:0;overflow-wrap:anywhere}.meta{font-size:12px;color:var(--muted);overflow-wrap:anywhere}.book-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:8px}.empty{grid-column:1/-1;text-align:center;padding:34px;border:1px dashed #cfc5e4;border-radius:14px;color:var(--muted);background:#fcfbfe}.note{padding:14px 16px;margin-top:16px;border-left:5px solid var(--g);color:var(--muted);line-height:1.5}.status{margin-top:11px;font-size:13px;color:var(--muted)}.status.ok{color:var(--ok)}.status.err{color:var(--danger)}
+input[type=file]{display:none}
+@media(max-width:800px){.access-grid,.grid{grid-template-columns:1fr}.wrap{padding:16px}.search{min-width:0;width:100%}.tools{width:100%}.hero h1{font-size:26px}}
+</style>
+</head>
+<body>
+<div class="top"><b>BAUM TenPers GRE — Offline Textbook Library</b><a href="index.html">Home</a></div>
+<div class="wrap">
+  <section class="hero">
+    <h1>My Offline Textbook Library</h1>
+    <p>Keep your personal PDF study materials on this device for offline reading, or open the restricted BAUM TenPers Google Drive library and request access where needed. Textbook files are not stored in GitHub or Vercel.</p>
+  </section>
+
+  <section class="access-grid">
+    <article class="panel">
+      <div class="badge">▣ LOCAL • PRIVATE • OFFLINE</div>
+      <h2>Import My Textbooks</h2>
+      <p>Select PDF books you already have on this device. The app stores local copies in this browser using IndexedDB so they can be opened later without uploading them to BAUM TenPers, GitHub, Vercel, or Supabase.</p>
+      <div class="actions">
+        <button class="btn btn-primary" id="importFiles">＋ Import PDFs</button>
+        <button class="btn btn-soft" id="importFolder">▤ Import Folder</button>
+      </div>
+      <input id="filePicker" type="file" accept="application/pdf,.pdf" multiple>
+      <input id="folderPicker" type="file" accept="application/pdf,.pdf" multiple webkitdirectory directory>
+      <div class="status" id="importStatus">No files are uploaded anywhere. Imported books stay in this browser profile.</div>
+    </article>
+
+    <article class="panel">
+      <div class="badge">☁ BAUM TENPERS • GOOGLE DRIVE</div>
+      <h2>Managed Textbook Library</h2>
+      <p>Open the restricted BAUM TenPers textbook folder on Google Drive. If your Google account already has access, the folder will open. Otherwise, use Google's access-request option and wait for approval.</p>
+      <div class="actions">
+        <a class="btn btn-gold" href="https://drive.google.com/drive/folders/1VEPxDtkVmFJBMJYgAJSGk3w2Ag_NsYkL?usp=drive_link" target="_blank" rel="noopener noreferrer">↗ Open / Request Drive Access</a>
+      </div>
+      <p class="small">Access to third-party copyrighted materials should only be granted where BAUM TenPers and the user have the appropriate rights or permissions. The app itself does not publicly distribute those files.</p>
+    </article>
+  </section>
+
+  <section class="library">
+    <div class="library-head">
+      <h2>Your Local Books</h2>
+      <div class="tools">
+        <input class="search" id="search" type="search" placeholder="Search imported textbooks…" aria-label="Search imported textbooks">
+        <button class="btn btn-danger" id="clearAll" title="Remove all locally imported PDFs from this browser">Clear Local Library</button>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="bookCount">0</b> books</div>
+      <div class="stat"><b id="totalSize">0 MB</b> local storage</div>
+      <div class="stat" id="quotaStat">Storage quota: checking…</div>
+    </div>
+    <div class="grid" id="grid">
+      <div class="empty">No local textbooks imported yet. Use <b>Import PDFs</b> or <b>Import Folder</b> above.</div>
+    </div>
+  </section>
+
+  <section class="note"><b>Privacy:</b> Local imports remain on this browser/device. Clearing browser site data, using a different browser profile, or uninstalling the browser may remove them, so keep your original PDF files safely stored elsewhere.</section>
+</div>
+<script>
+(() => {
+  'use strict';
+  const DB_NAME='baumGreOfflineTextbooks';
+  const DB_VERSION=1;
+  const STORE='books';
+  const $=id=>document.getElementById(id);
+  const grid=$('grid'), status=$('importStatus'), search=$('search');
+  let cachedBooks=[];
+
+  function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+  function fmtBytes(n){
+    if(!Number.isFinite(n)||n<=0)return '0 MB';
+    const u=['B','KB','MB','GB']; let i=0,v=n;
+    while(v>=1024&&i<u.length-1){v/=1024;i++;}
+    return `${v.toFixed(i<2?0:1)} ${u[i]}`;
+  }
+  function bookKey(file){return `${file.name}::${file.size}::${file.lastModified||0}`;}
+
+  function openDB(){
+    return new Promise((resolve,reject)=>{
+      const req=indexedDB.open(DB_NAME,DB_VERSION);
+      req.onupgradeneeded=()=>{
+        const db=req.result;
+        if(!db.objectStoreNames.contains(STORE)){
+          const st=db.createObjectStore(STORE,{keyPath:'id'});
+          st.createIndex('name','name',{unique:false});
+          st.createIndex('addedAt','addedAt',{unique:false});
+        }
+      };
+      req.onsuccess=()=>resolve(req.result);
+      req.onerror=()=>reject(req.error);
+    });
+  }
+  async function getAllBooks(){
+    const db=await openDB();
+    return new Promise((resolve,reject)=>{
+      const tx=db.transaction(STORE,'readonly');
+      const req=tx.objectStore(STORE).getAll();
+      req.onsuccess=()=>resolve(req.result||[]);
+      req.onerror=()=>reject(req.error);
+      tx.oncomplete=()=>db.close();
+    });
+  }
+  async function putBook(book){
+    const db=await openDB();
+    return new Promise((resolve,reject)=>{
+      const tx=db.transaction(STORE,'readwrite');
+      tx.objectStore(STORE).put(book);
+      tx.oncomplete=()=>{db.close();resolve();};
+      tx.onerror=()=>{db.close();reject(tx.error);};
+    });
+  }
+  async function deleteBook(id){
+    const db=await openDB();
+    return new Promise((resolve,reject)=>{
+      const tx=db.transaction(STORE,'readwrite');
+      tx.objectStore(STORE).delete(id);
+      tx.oncomplete=()=>{db.close();resolve();};
+      tx.onerror=()=>{db.close();reject(tx.error);};
+    });
+  }
+  async function clearBooks(){
+    const db=await openDB();
+    return new Promise((resolve,reject)=>{
+      const tx=db.transaction(STORE,'readwrite');
+      tx.objectStore(STORE).clear();
+      tx.oncomplete=()=>{db.close();resolve();};
+      tx.onerror=()=>{db.close();reject(tx.error);};
+    });
+  }
+  async function importFiles(files){
+    const pdfs=[...files].filter(f=>f.type==='application/pdf'||/\.pdf$/i.test(f.name));
+    if(!pdfs.length){status.textContent='No PDF files were selected.';status.className='status err';return;}
+    status.textContent=`Importing ${pdfs.length} PDF${pdfs.length===1?'':'s'}…`;status.className='status';
+    let ok=0,failed=0;
+    for(const f of pdfs){
+      try{
+        await putBook({id:bookKey(f),name:f.name,path:f.webkitRelativePath||f.name,size:f.size,lastModified:f.lastModified||0,addedAt:Date.now(),blob:f});
+        ok++;
+      }catch(e){console.error(e);failed++;}
+    }
+    status.textContent=failed?`Imported ${ok}; ${failed} could not be stored (possibly due to browser storage limits).`:`Imported ${ok} textbook${ok===1?'':'s'} successfully.`;
+    status.className=failed?'status err':'status ok';
+    await refresh();
+  }
+  async function openBook(id){
+    const b=cachedBooks.find(x=>x.id===id); if(!b)return;
+    const blob=b.blob instanceof Blob?b.blob:new Blob([b.blob],{type:'application/pdf'});
+    const url=URL.createObjectURL(blob);
+    const w=window.open(url,'_blank','noopener');
+    if(!w){status.textContent='Your browser blocked the PDF window. Allow pop-ups for this app and try again.';status.className='status err';}
+    setTimeout(()=>URL.revokeObjectURL(url),120000);
+  }
+  async function refresh(){
+    try{cachedBooks=(await getAllBooks()).sort((a,b)=>b.addedAt-a.addedAt||a.name.localeCompare(b.name));}
+    catch(e){console.error(e);cachedBooks=[];status.textContent='This browser could not open the offline textbook database.';status.className='status err';}
+    render(); updateStorage();
+  }
+  function render(){
+    const q=search.value.trim().toLowerCase();
+    const books=cachedBooks.filter(b=>!q||b.name.toLowerCase().includes(q)||(b.path||'').toLowerCase().includes(q));
+    $('bookCount').textContent=cachedBooks.length;
+    $('totalSize').textContent=fmtBytes(cachedBooks.reduce((s,b)=>s+(b.size||0),0));
+    if(!books.length){
+      grid.innerHTML=`<div class="empty">${cachedBooks.length?'No imported books match your search.':'No local textbooks imported yet. Use <b>Import PDFs</b> or <b>Import Folder</b> above.'}</div>`;
+      return;
+    }
+    grid.innerHTML=books.map(b=>`<article class="book">
+      <h3>${esc(b.name.replace(/\.pdf$/i,''))}</h3>
+      <div class="meta">${esc(b.path||b.name)}</div>
+      <div class="meta">${fmtBytes(b.size||0)} • stored locally ${new Date(b.addedAt).toLocaleDateString()}</div>
+      <div class="book-actions">
+        <button class="btn btn-primary" data-open="${esc(b.id)}">Open PDF</button>
+        <button class="btn btn-danger" data-delete="${esc(b.id)}">Remove</button>
+      </div>
+    </article>`).join('');
+  }
+  async function updateStorage(){
+    const el=$('quotaStat');
+    if(navigator.storage&&navigator.storage.estimate){
+      try{const e=await navigator.storage.estimate(); el.innerHTML=`Browser storage: <b>${fmtBytes(e.usage||0)}</b> used of ~<b>${fmtBytes(e.quota||0)}</b>`;return;}catch(_){ }
+    }
+    el.textContent='Browser storage quota: unavailable';
+  }
+
+  $('importFiles').addEventListener('click',()=>$('filePicker').click());
+  $('importFolder').addEventListener('click',()=>$('folderPicker').click());
+  $('filePicker').addEventListener('change',e=>{importFiles(e.target.files);e.target.value='';});
+  $('folderPicker').addEventListener('change',e=>{importFiles(e.target.files);e.target.value='';});
+  search.addEventListener('input',render);
+  grid.addEventListener('click',async e=>{
+    const open=e.target.closest('[data-open]'); if(open){await openBook(open.dataset.open);return;}
+    const del=e.target.closest('[data-delete]'); if(del&&confirm('Remove this PDF from the local app library? Your original file will not be deleted.')){await deleteBook(del.dataset.delete);await refresh();}
+  });
+  $('clearAll').addEventListener('click',async()=>{
+    if(!cachedBooks.length)return;
+    if(confirm(`Remove all ${cachedBooks.length} imported PDF${cachedBooks.length===1?'':'s'} from this browser? Your original files will not be deleted.`)){await clearBooks();status.textContent='Local textbook library cleared.';status.className='status ok';await refresh();}
+  });
+
+  if(navigator.storage&&navigator.storage.persist){navigator.storage.persist().catch(()=>{});}
+  refresh();
+})();
+</script>
+</body>
+</html>

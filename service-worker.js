@@ -1,8 +1,11 @@
-const CACHE = "baum-gre-pwa-v1";
+const CACHE = "baum-gre-pwa-v2";
 const SHELL = [
   "/",
   "/index.html",
   "/auth-gate.css",
+  "/baum-shell.css",
+  "/baum-shell.js",
+  "/textbooks.html",
   "/auth-gate.js",
   "/pwa-register.js",
   "/manifest.webmanifest",
